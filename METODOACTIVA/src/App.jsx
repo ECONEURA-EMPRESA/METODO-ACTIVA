@@ -18,13 +18,20 @@ import { IMAGES } from './constants/images';
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [showLeadModal, setShowLeadModal] = useState(false);
   const [showContentModal, setShowContentModal] = useState(false);
   const [hasRegistered, setHasRegistered] = useState(false);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+      // Calculate scroll progress
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setScrollProgress(Math.min(progress, 100));
+    };
     window.addEventListener('scroll', handleScroll);
 
     // Smooth scroll for all anchor links
@@ -55,6 +62,14 @@ function App() {
 
   return (
     <div className="font-sans text-gray-900 bg-gray-50 overflow-x-hidden selection:bg-[#2DD6F5] selection:text-[#B5006C]">
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 z-[60] bg-gray-200/50">
+        <div
+          className="h-full bg-gradient-to-r from-[#EC008C] via-[#F7941D] to-[#00AEEF] transition-all duration-150 ease-out"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+
       <nav className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-3' : 'bg-white/90 backdrop-blur-md py-4'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-3 cursor-pointer group" onClick={() => scrollTo('hero')}>
@@ -328,6 +343,19 @@ function App() {
       <LeadMagnetModal isOpen={showLeadModal} onClose={() => setShowLeadModal(false)} onSuccess={handleLeadSuccess} />
       {showContentModal && <BookReader onClose={() => setShowContentModal(false)} onBuy={openAmazon} />}
       <AdminDashboard isOpen={isAdminOpen} onClose={() => setIsAdminOpen(false)} />
+
+      {/* Scroll to Top Button */}
+      {scrolled && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          aria-label="Volver arriba"
+          className="fixed bottom-24 right-6 z-40 p-3 bg-white border border-gray-200 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
+        >
+          <svg className="w-5 h-5 text-gray-600 group-hover:text-[#EC008C] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+          </svg>
+        </button>
+      )}
     </div>
   );
 }
