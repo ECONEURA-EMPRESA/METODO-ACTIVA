@@ -2,17 +2,19 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getFunctions } from 'firebase/functions';
 
-// TODO: Replace with your actual Firebase project configuration
-// You can get this from the Firebase Console > Project Settings > General
+// Firebase configuration using environment variables (Vite prefix VITE_)
 const firebaseConfig = {
-    apiKey: "AIzaSyChFHAx5krCDs_5DrW7h58WqmuTuRuZs9Q",
-    authDomain: "project-c465bc45-299b-470d-8b6.firebaseapp.com",
-    projectId: "project-c465bc45-299b-470d-8b6",
-    storageBucket: "project-c465bc45-299b-470d-8b6.firebasestorage.app",
-    messagingSenderId: "476151355322",
-    appId: "1:476151355322:web:5d180c698bc4fd09ef2f83"
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const functions = getFunctions(app);
+
+// Export Gemini API Key for use in chat component
+export const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;

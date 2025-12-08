@@ -23,4 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 
+# Firebase
 .firebase/
+
+# Environment Variables (NEVER commit these - contains API keys)
+.env
+.env.local
+.env.*.local
