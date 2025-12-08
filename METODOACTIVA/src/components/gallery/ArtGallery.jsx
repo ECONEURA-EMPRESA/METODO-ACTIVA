@@ -14,7 +14,11 @@ const ArtGallery = () => {
     const [selectedImage, setSelectedImage] = useState(null);
 
     return (
-        <section className="py-24 bg-gradient-to-b from-gray-50 via-white to-gray-100 relative overflow-hidden">
+        <section
+            id="galeria"
+            aria-label="Galería de Arte ACTIVA"
+            className="py-24 bg-gradient-to-b from-gray-50 via-white to-gray-100 relative overflow-hidden"
+        >
             {/* Ambient lighting matching brand colors */}
             <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-[#EC008C]/5 rounded-full blur-[200px] pointer-events-none"></div>
             <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#00AEEF]/5 rounded-full blur-[200px] pointer-events-none"></div>
@@ -62,7 +66,8 @@ const ArtGallery = () => {
                                                     <div className="relative overflow-hidden rounded-sm shadow-lg">
                                                         <img
                                                             src={item.src}
-                                                            alt={item.title}
+                                                            alt={`Obra de arte: ${item.title} por ${item.artist}`}
+                                                            loading="lazy"
                                                             className="w-full aspect-square object-cover transition-transform duration-1000 group-hover:scale-110"
                                                         />
 
@@ -107,6 +112,7 @@ const ArtGallery = () => {
                 >
                     <button
                         onClick={() => setSelectedImage(null)}
+                        aria-label="Cerrar galería"
                         className="absolute top-6 right-6 text-white/50 hover:text-white p-3 hover:bg-white/10 rounded-full transition-colors z-50"
                     >
                         <X size={32} />
