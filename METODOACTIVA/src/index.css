@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased font-sans text-gray-900 bg-[#F8FAFC];
+    background-image:
+      radial-gradient(at 0% 0%, rgba(236, 0, 140, 0.05) 0px, transparent 60%),
+      radial-gradient(at 100% 0%, rgba(45, 214, 245, 0.05) 0px, transparent 60%),
+      radial-gradient(at 100% 100%, rgba(247, 148, 29, 0.05) 0px, transparent 60%);
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display text-gray-900 drop-shadow-sm tracking-tight;
+  }
+}
+
+/* GLOBAL 3D & PREMIUM EFFECTS */
+
+/* 1. Glassmorphism Ultra-Premium */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.02),
+    0 10px 15px -3px rgba(0, 0, 0, 0.03),
+    inset 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+/* 2. 3D Floating Animation */
+@keyframes float-3d {
+  0% {
+    transform: translateY(0px) rotateX(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotateX(2deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotateX(0deg);
+  }
+}
+
+.animate-float {
+  animation: float-3d 6s ease-in-out infinite;
+}
+
+/* 3. Deep 3D Card Hover */
+.depth-card {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.depth-card:hover {
+  transform: translateY(-8px) scale(1.02) rotateX(2deg);
+  box-shadow:
+    0 20px 40px -5px rgba(0, 0, 0, 0.1),
+    0 10px 20px -5px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+}
+
+/* 4. Text Gradients & Effects */
+.text-gradient-premium {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#EC008C] via-[#B5006C] to-[#EC008C];
+  background-size: 200% auto;
+  animation: textShine 4s linear infinite;
+}
+
+@keyframes textShine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* 5. Book Reader Specifics */
+.book-stage {
+  perspective: 2000px;
+}
+
+.flipping-page {
+  transform-origin: left center;
+  z-index: 50;
+  backface-visibility: hidden;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.page-sheen {
+  background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+  animation: sheenMove 0.8s linear forwards;
+}
+
+/* Utilities */
+@layer utilities {
+  .hover-lift {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .hover-lift:hover {
+    @apply -translate-y-1 shadow-xl;
+  }
+
+  .glass-effect {
+    @apply bg-white/80 backdrop-blur-xl border border-white/20;
+  }
+
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+}

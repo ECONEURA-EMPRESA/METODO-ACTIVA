@@ -1,0 +1,11 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /leads/{leadId} {
+      // Allow creation of leads by anyone (public form)
+      allow create: if true;
+      // Only allow read/update/delete by authenticated admins (future)
+      allow read, update, delete: if false;
+    }
+  }
+}
