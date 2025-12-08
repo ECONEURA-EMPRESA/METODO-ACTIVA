@@ -1,6 +1,6 @@
 # 🎵 Método Activa
 
-**Transformando la Ansiedad en Vitalidad a través de la Neuroestética y la Musicoterapia.**
+**Activa tu Cuerpo, Mente y Corazón con arte**
 
 [![Firebase Hosting](https://img.shields.io/badge/Hosting-Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black)](https://metodoactiva.es)
 [![React](https://img.shields.io/badge/Frontend-React-61DAFB?style=flat-square&logo=react&logoColor=black)](https://reactjs.org/)
