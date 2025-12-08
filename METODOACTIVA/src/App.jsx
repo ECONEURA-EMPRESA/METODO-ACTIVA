@@ -106,7 +106,7 @@ function App() {
                 <h1 className="text-4xl lg:text-6xl font-black leading-tight mb-6 text-gray-900">ACTIVA TU <br /><span className="bg-clip-text text-transparent bg-gradient-to-b from-[#FFD200] to-[#F7941D]">CUERPO</span>, <span className="bg-clip-text text-transparent bg-gradient-to-b from-[#2DD6F5] to-[#00AEEF]">MENTE</span> Y <span className="bg-clip-text text-transparent bg-gradient-to-b from-[#EC008C] to-[#B5006C]">CORAZÓN</span></h1>
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">La <strong>musicoterapia es una herramienta que sana, clínicamente comprobado</strong>. Descubre cómo el Método Activa reduce el estrés, sana la ansiedad y recupera tu vitalidad en solo 21 días.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <Button onClick={openAmazon} className="text-lg px-10 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all" variant="amazon">Comprar en Amazon</Button>
+                  <Button onClick={openAmazon} className="text-lg px-10 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all animate-pulse-ring" variant="amazon">Comprar en Amazon</Button>
                   <Button variant="secondary" onClick={handleAccessRequest} className="hover:border-[#00AEEF] transition-colors">{hasRegistered ? <BookOpen size={20} /> : <Lock size={20} />} Leer primer capítulo</Button>
                 </div>
                 <div className="mt-8 flex items-center justify-center lg:justify-start gap-6 text-sm text-gray-500">
@@ -121,14 +121,20 @@ function App() {
             </div>
             <div className="lg:w-1/2 relative perspective-[2000px]">
               <FadeIn delay={200}>
-                <div className="relative mx-auto w-3/4 max-w-md group animate-float">
+                <div className="relative mx-auto w-full max-w-xl group animate-float">
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-gradient-to-tr from-[#F7941D] via-[#EC008C] to-[#00AEEF] rounded-full blur-[100px] opacity-20 group-hover:opacity-30 transition-opacity duration-700"></div>
-                  <div className="relative z-10 rounded-r-lg shadow-[20px_20px_60px_-15px_rgba(0,0,0,0.3)] transform rotate-y-12 hover:rotate-0 transition-transform duration-700 ease-out cursor-pointer" onClick={openAmazon}>
-                    <img src={IMAGES.bookMockup} alt="Libro Método Activa Tapa Blanda" className="w-full rounded-lg shadow-xl" />
-                  </div>
-                  <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg z-20 flex items-center gap-3 animate-bounce duration-[3000ms]">
-                    <div className="bg-[#FF9900]/10 p-2 rounded-full text-[#FF9900]"><Star size={20} fill="currentColor" /></div>
-                    <div><p className="text-[10px] text-gray-500 font-bold uppercase">Categoría</p><p className="font-bold text-gray-900 text-sm">Best Seller</p></div>
+                  <div className="relative z-10 rounded-2xl shadow-[20px_20px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden cursor-pointer" onClick={openAmazon}>
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full rounded-2xl shadow-xl"
+                      poster={IMAGES.bookMockup}
+                    >
+                      <source src="/promo.mp4" type="video/mp4" />
+                      <img src={IMAGES.bookMockup} alt="Libro Método Activa" className="w-full rounded-lg" />
+                    </video>
                   </div>
                 </div>
               </FadeIn>
