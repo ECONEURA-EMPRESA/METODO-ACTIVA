@@ -52,6 +52,8 @@ function App() {
   const handleAccessRequest = () => { if (hasRegistered) { setShowContentModal(true); } else { setShowLeadModal(true); } };
   const handleLeadSuccess = () => { setHasRegistered(true); setShowLeadModal(false); setShowContentModal(true); };
 
+  const openYouTube = () => { window.open("https://youtube.com/@metodoactiva", "_blank", "noopener,noreferrer"); };
+
   return (
     <div className="font-sans text-gray-900 bg-gray-50 overflow-x-hidden selection:bg-[#2DD6F5] selection:text-[#B5006C]">
       <nav className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-3' : 'bg-white/90 backdrop-blur-md py-4'}`}>
@@ -169,12 +171,12 @@ function App() {
 
       <Section id="recursos" className="bg-gray-50">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16"><h2 className="text-3xl font-bold text-gray-900 mb-4">Recursos Gratuitos para Lectores</h2><p className="text-gray-500 max-w-2xl mx-auto mb-8">Este libro no solo es teoría. Incluye un kit de herramientas y recursos prácticos validados por estudios clínicos. Regístrate para acceder al área de miembros.</p><Button onClick={handleAccessRequest} className="mx-auto group" variant="primary"><Download size={20} className="group-hover:animate-bounce" /> Acceder al Kit de Herramientas</Button></div>
+          <div className="text-center mb-16"><h2 className="text-3xl font-bold text-gray-900 mb-4">Recursos Gratuitos para Lectores</h2><p className="text-gray-500 max-w-2xl mx-auto mb-8">Este libro no solo es teoría. Incluye un kit de herramientas y recursos prácticos validados por estudios clínicos. Regístrate para acceder al área de miembros.</p><Button onClick={openYouTube} className="mx-auto group" variant="primary"><Download size={20} className="group-hover:animate-bounce" /> Acceder al Kit de Herramientas</Button></div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="space-y-8">
-              <BenefitRow category="body" icon={Music} title="Playlists Terapéuticas" desc="Acceso a listas de música con 'arrastre rítmico' diseñadas para bajar el cortisol en minutos." />
-              <BenefitRow category="mind" icon={Brain} title="Ejercicios Cognitivos" desc="Técnicas de dibujo y visualización para eliminar la 'niebla mental' y activar nuevas rutas neuronales." />
-              <BenefitRow category="heart" icon={Heart} title="Diario Emocional" desc="Plantillas para desbloquear traumas que las palabras no pueden alcanzar mediante el bypass límbico." />
+              <BenefitRow onClick={openYouTube} category="body" icon={Music} title="Playlists Terapéuticas" desc="Acceso a listas de música con 'arrastre rítmico' diseñadas para bajar el cortisol en minutos." />
+              <BenefitRow onClick={openYouTube} category="mind" icon={Brain} title="Ejercicios Cognitivos" desc="Técnicas de dibujo y visualización para eliminar la 'niebla mental' y activar nuevas rutas neuronales." />
+              <BenefitRow onClick={openYouTube} category="heart" icon={Heart} title="Diario Emocional" desc="Plantillas para desbloquear traumas que las palabras no pueden alcanzar mediante el bypass límbico." />
             </div>
             <div className="hidden lg:flex items-center justify-center p-8 bg-white rounded-3xl shadow-sm border border-gray-100">
               <div className="text-center">
@@ -184,13 +186,13 @@ function App() {
                   <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#EC008C] to-[#B5006C] opacity-80 ring-4 ring-white"></div>
                 </div>
                 <p className="font-bold text-gray-900 text-lg">Kit de Herramientas<br />Tríada Maestra</p>
-                <button onClick={handleAccessRequest} className="mt-4 text-[#00AEEF] text-sm font-bold hover:underline">Descargar Demo</button>
+                <button onClick={openYouTube} className="mt-4 text-[#00AEEF] text-sm font-bold hover:underline">Descargar Demo</button>
               </div>
             </div>
             <div className="space-y-8">
-              <BenefitRow category="body" icon={ShieldCheck} title="Guía Inmunológica" desc="Protocolos para fortalecer tu sistema inmunológico reduciendo el estrés crónico de forma natural." />
-              <BenefitRow category="heart" icon={Users} title="Dinámicas Grupales" desc="Ejercicios para mejorar relaciones conectando desde la calma y la regulación emocional." />
-              <BenefitRow category="mind" icon={FileText} title="Plan de 21 Días" desc="Tu hoja de ruta paso a paso para integrar estos hábitos en tu rutina diaria sin esfuerzo." />
+              <BenefitRow onClick={openYouTube} category="body" icon={ShieldCheck} title="Guía Inmunológica" desc="Protocolos para fortalecer tu sistema inmunológico reduciendo el estrés crónico de forma natural." />
+              <BenefitRow onClick={openYouTube} category="heart" icon={Users} title="Dinámicas Grupales" desc="Ejercicios para mejorar relaciones conectando desde la calma y la regulación emocional." />
+              <BenefitRow onClick={openYouTube} category="mind" icon={FileText} title="Plan de 21 Días" desc="Tu hoja de ruta paso a paso para integrar estos hábitos en tu rutina diaria sin esfuerzo." />
             </div>
           </div>
         </div>

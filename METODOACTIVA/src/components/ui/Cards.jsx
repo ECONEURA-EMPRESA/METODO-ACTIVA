@@ -18,7 +18,7 @@ export const AmazonReviewCard = ({ title, author, date, text }) => (
     </div>
 );
 
-export const BenefitRow = ({ icon: Icon, title, desc, category = 'mind' }) => {
+export const BenefitRow = ({ icon: Icon, title, desc, category = 'mind', onClick, className = '' }) => {
     const gradients = {
         body: "from-brand-yellow-light to-brand-yellow",
         mind: "from-brand-blue-light to-brand-blue",
@@ -36,7 +36,10 @@ export const BenefitRow = ({ icon: Icon, title, desc, category = 'mind' }) => {
     };
 
     return (
-        <div className="flex items-start gap-4 p-5 hover:bg-white rounded-2xl transition-all duration-300 group cursor-default hover-lift">
+        <div
+            onClick={onClick}
+            className={`flex items-start gap-4 p-5 hover:bg-white rounded-2xl transition-all duration-300 group ${onClick ? 'cursor-pointer hover:shadow-md' : 'cursor-default'} hover-lift ${className}`}
+        >
             <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${gradients[category]} flex items-center justify-center flex-shrink-0 text-white shadow-md ${shadowColors[category]} transition-all duration-300 group-hover:scale-110 group-hover:rotate-3`}>
                 <Icon size={26} strokeWidth={2.5} />
             </div>
