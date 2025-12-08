@@ -12,6 +12,7 @@ import { LeadMagnetModal, BenefitRow, AmazonReviewCard } from './components/ui/C
 import BookReader from './components/book/BookReader';
 import CustomerSupportChat from './components/chat/CustomerSupportChat';
 import AdminDashboard from './components/AdminDashboard';
+import ArtGallery from './components/gallery/ArtGallery';
 import { IMAGES } from './constants/images';
 
 function App() {
@@ -201,6 +202,9 @@ function App() {
           </div>
         </div>
       </Section>
+
+      {/* Premium Art Gallery */}
+      <ArtGallery />
 
       <Section id="chat" className="bg-white">
         <div className="container mx-auto px-6 text-center">
