@@ -1,164 +1,135 @@
-// Este archivo centraliza todos los textos de la página.
-// Puedes editar los textos aquí directamente y los cambios se reflejarán en la web.
-// NO elimines las comillas "" ni las llaves {}.
-
-import { Music, Brain, Heart, ShieldCheck, Users, Check, Activity, FileText } from 'lucide-react';
+import { Music, Brain, Heart, Sparkles, Users, Smile, Sun, HandHeart } from 'lucide-react';
 
 export const CONTENT = {
     navbar: {
         brand: "MÉTODO ACTIVA",
         links: {
-            about: "Quiénes Somos",
-            resources: "Recursos",
-            support: "Soporte",
-            reviews: "Opiniones"
+            about: "El Propósito",
+            resources: "Recursos de Unión",
+            support: "Sesiones",
+            reviews: "Familias"
         },
-        cta: "Comprar en Amazon"
+        cta: "Conseguir el Libro"
     },
     hero: {
         badge: {
-            prefix: "CON EL",
-            highlight1: "MÉTODO ACTIVA",
-            middle: "PUEDES TENER",
-            highlight2: "SALUD Y BIENESTAR"
+            prefix: "NO DEJES QUE LA",
+            highlight1: "SOLEDAD",
+            middle: "GANÉ LA",
+            highlight2: "PARTIDA"
         },
         title: {
-            part1: "ACTIVA TU",
-            gradient1: "CUERPO",
-            gradient2: "MENTE",
-            gradient3: "CORAZÓN"
+            part1: "EL ARTE",
+            gradient1: "CONECTA",
+            gradient2: "CORAZONES",
+            gradient3: "SOLITARIOS"
         },
-        description: "La **musicoterapia es una herramienta que sana, clínicamente comprobado**. Descubre cómo el Método Activa reduce el estrés, sana la ansiedad y recupera tu vitalidad en solo 21 días.",
-        cta_primary: "Comprar en Amazon",
-        cta_secondary: "Leer primer capítulo",
+        description: "Cuando la vejez trae silencio o la infancia trae barreras, la música tiende un puente. El **Método Activa** es tu guía para **vencer la soledad en tus mayores** y **crear un vínculo inquebrantable con tus niños**. 21 sesiones para decir 'Te quiero' sin palabras.",
+        cta_primary: "Ver Libro en Amazon",
+        cta_secondary: "Probar una Sesión Juntos",
         rating: "4.9/5",
-        reviews_count: "(+500 valoraciones)",
-        shipping: "Envío **RÁPIDO** y **GRATIS** con Prime",
+        reviews_count: "(Hijos y padres que volvieron a conectar)",
+        shipping: "Disponible en Tapa Blanda (Para regalar)",
         badges: [
-            "Pago Seguro",
-            "Devolución Garantizada"
+            "Contra la Soledad",
+            "Vínculo Familiar",
+            "Amor en Acción"
         ],
         book_badge: {
-            category: "Categoría",
-            rank: "Best Seller"
+            category: "Best Seller en",
+            rank: "Cuidado Familiar"
         }
     },
     benefits: {
-        title: "¿Por qué este libro está cambiando vidas?",
-        subtitle: "Más que un libro, es una prescripción médica natural. Basado en estudios clínicos de neuroestética.",
+        title: "¿A quién vas a recuperar hoy?",
+        subtitle: "La musicoterapia no solo cura el cuerpo, cura la distancia entre las personas.",
+
         cards: [
+            // --- BLOQUE MAYORES (SOLEDAD Y PRESENCIA) ---
             {
-                category: "body",
-                icon: Activity,
-                title: "Reduce el Cortisol",
-                desc: "Aprende técnicas de 'arrastre rítmico' para calmar tu sistema nervioso y bajar la hormona del estrés en minutos."
+                category: "heart", // Color cálido
+                icon: Sun,
+                title: "Mayores: Adiós a la Soledad",
+                desc: "El silencio de la vejez duele. Llena su casa de melodías y vida. Comparte una canción y verás cómo su mirada se ilumina, sintiéndose acompañados y valiosos de nuevo."
             },
             {
                 category: "mind",
                 icon: Brain,
-                title: "Claridad Mental",
-                desc: "Elimina la 'niebla mental' activando nuevas rutas neuronales a través de la estimulación estética y visual."
+                title: "Mayores: Recuerdos Compartidos",
+                desc: "El Alzheimer puede borrar datos, pero no emociones. Usa la música para viajar juntos a sus mejores momentos y tener conversaciones desde el corazón, no desde la memoria."
             },
-            {
-                category: "heart",
-                icon: Heart,
-                title: "Sanación Emocional",
-                desc: "Desbloquea traumas que las palabras no pueden alcanzar mediante el bypass del sistema límbico."
-            },
+
+            // --- BLOQUE NIÑOS (CONEXIÓN Y ENTENDIMIENTO) ---
             {
                 category: "body",
-                icon: ShieldCheck,
-                title: "Refuerza Inmunidad",
-                desc: "La reducción del estrés crónico fortalece tu sistema inmunológico de forma natural."
+                icon: HandHeart, // Icono de mano y corazón
+                title: "Niños: Entrar en su Mundo",
+                desc: "A veces no quieren hablar, pero siempre quieren jugar. Usa el arte y el ritmo para entrar en su burbuja y construir un puente de confianza donde se sientan seguros."
             },
             {
                 category: "heart",
-                icon: Users,
-                title: "Mejora Relaciones",
-                desc: "La regulación emocional te permite conectar con los demás desde la calma, no desde la reacción."
-            },
-            {
-                category: "mind",
-                icon: Check,
-                title: "Plan de 21 Días",
-                desc: "Incluye una guía práctica paso a paso para integrar estos hábitos en tu rutina diaria sin esfuerzo."
+                icon: Smile,
+                title: "Niños: Alegría Compartida",
+                desc: "Transforma las rutinas difíciles en juegos sonoros. Cambia el conflicto por la risa y fortalece el vínculo afectivo que les protegerá toda la vida."
             }
         ]
     },
     resources: {
-        title: "Recursos Gratuitos para Lectores",
-        subtitle: "Este libro no solo es teoría. Incluye un kit de herramientas y recursos prácticos validados por estudios clínicos. Regístrate para acceder al área de miembros.",
-        cta_download: "Acceder al Kit de Herramientas",
+        title: "Cread un Momento Mágico Hoy",
+        subtitle: "No esperes a tener el libro. Descarga la **Sesión de Conexión Nº1** y dedica 10 minutos a mirar a los ojos y disfrutar con tu ser querido.",
+        cta_download: "Descargar Guía de Conexión",
         items: [
-            {
-                category: "body",
-                icon: Music,
-                title: "Playlists Terapéuticas",
-                desc: "Acceso a listas de música con 'arrastre rítmico' diseñadas para bajar el cortisol en minutos."
-            },
-            {
-                category: "mind",
-                icon: Brain,
-                title: "Ejercicios Cognitivos",
-                desc: "Técnicas de dibujo y visualización para eliminar la 'niebla mental' y activar nuevas rutas neuronales."
-            },
-            {
-                category: "heart",
-                icon: Heart,
-                title: "Diario Emocional",
-                desc: "Plantillas para desbloquear traumas que las palabras no pueden alcanzar mediante el bypass límbico."
-            },
-            {
-                category: "body",
-                icon: ShieldCheck,
-                title: "Guía Inmunológica",
-                desc: "Protocolos para fortalecer tu sistema inmunológico reduciendo el estrés crónico de forma natural."
-            },
             {
                 category: "heart",
                 icon: Users,
-                title: "Dinámicas Grupales",
-                desc: "Ejercicios para mejorar relaciones conectando desde la calma y la regulación emocional."
+                title: "Guía: Tu Primer Encuentro Musical",
+                desc: "Instrucciones sencillas para hacer una actividad que rompa el hielo y genere sonrisas inmediatas."
+            },
+            {
+                category: "body",
+                icon: Music,
+                title: "Playlist: Abrazos Sonoros",
+                desc: "Una selección musical curada científicamente para generar oxitocina (la hormona del amor) y calma ambiental."
             },
             {
                 category: "mind",
-                icon: FileText,
-                title: "Plan de 21 Días",
-                desc: "Tu hoja de ruta paso a paso para integrar estos hábitos en tu rutina diaria sin esfuerzo."
+                icon: Sparkles,
+                title: "Diario de Momentos",
+                desc: "Un espacio para anotar esas miradas, esas palabras y esos gestos que la música os ha regalado hoy."
             }
         ]
     },
     reviews: {
-        title: "Lo que dicen nuestros lectores",
-        subtitle: "Personas reales recuperando su bienestar.",
-        cta_more: "Ver más opiniones en Amazon",
+        title: "Vínculos Restaurados",
+        subtitle: "Lo que sucede cuando el arte entra en casa.",
+        cta_more: "Leer historias emotivas en Amazon",
         items: [
             {
-                title: "Un antes y un después en mi ansiedad",
-                text: "Había probado todo: meditación, yoga, pastillas... pero nada me funcionaba a largo plazo. Este método es diferente. Entender CÓMO funciona mi cerebro con la música fue la clave. En 21 días siento una paz que no tenía en años.",
-                author: "Ana María G.",
-                date: "12 de octubre de 2024"
+                title: "Ya no se siente sola",
+                text: "Mi madre pasaba los días mirando la ventana. Con las sesiones de música del libro, ahora canta, baila en su silla y me espera con ilusión. Ha vuelto a la vida.",
+                author: "Carmen D., Hija",
+                date: "Compra verificada"
             },
             {
-                title: "Científico pero accesible",
-                text: "Soy psicólogo y suelo ser escéptico con estos libros de autoayuda, pero este está fundamentado en neurociencia real. Lo estoy recomendando a mis pacientes. Las playlists son oro puro.",
-                author: "Dr. Carlos Ruiz",
-                date: "5 de noviembre de 2024"
+                title: "Por fin nos entendemos",
+                text: "Mi hijo con autismo no me dejaba abrazarle. A través de los juegos rítmicos del Método Activa, ahora buscamos el contacto y nos reímos juntos. Es un milagro.",
+                author: "David L., Padre",
+                date: "Compra verificada"
             },
             {
-                title: "Regalo perfecto",
-                text: "Se lo regalé a mi madre que estaba pasando una depresión leve y le ha cambiado la cara. Los ejercicios son sencillos y el libro es precioso de leer. El diseño te calma solo con verlo.",
-                author: "Laura P.",
-                date: "20 de septiembre de 2024"
+                title: "El mejor regalo para mi abuelo",
+                text: "No sabía qué regalarle y le di mi tiempo con este libro. Hemos descubierto que le encanta pintar escuchando jazz. Es nuestro momento sagrado.",
+                author: "Sofía, Nieta",
+                date: "Compra verificada"
             }
         ]
     },
     footer: {
-        copyright: " 2025 Método Activa. Todos los derechos reservados.",
+        copyright: "© 2025 Método Activa. El Arte Conecta Personas.",
         links: {
-            privacy: "Política de Privacidad",
-            terms: "Términos de Uso",
-            cookies: "Política de Cookies"
+            privacy: "Privacidad",
+            terms: "Aviso Legal",
+            cookies: "Cookies"
         }
     }
 };

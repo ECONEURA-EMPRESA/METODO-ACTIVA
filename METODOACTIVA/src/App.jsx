@@ -10,6 +10,7 @@ import Section from './components/ui/Section';
 import FadeIn from './components/ui/FadeIn';
 import { LeadMagnetModal, BenefitRow, AmazonReviewCard } from './components/ui/Cards';
 import { IMAGES } from './constants/images';
+import { CONTENT } from './constants/content';
 
 // Lazy Load Heavy Components
 const BookReader = lazy(() => import('./components/book/BookReader'));
@@ -101,11 +102,11 @@ function App() {
             </span>
           </div>
           <div className="hidden md:flex items-center gap-8 font-medium text-gray-600 text-sm">
-            <button onClick={() => scrollTo('autor')} className="hover:text-[#EC008C] transition-colors">Quiénes Somos</button>
-            <button onClick={() => scrollTo('recursos')} className="hover:text-[#00AEEF] transition-colors flex items-center gap-1"><Brain size={16} /> Recursos</button>
-            <button onClick={() => scrollTo('chat')} className="hover:text-[#F7941D] transition-colors flex items-center gap-1 text-gray-600 font-bold"><MessageCircle size={14} /> Soporte</button>
-            <button onClick={() => scrollTo('reviews')} className="hover:text-[#B5006C] transition-colors">Opiniones</button>
-            <button onClick={openAmazon} className="bg-[#FF9900] hover:bg-[#ffad33] text-white px-6 py-2 rounded-md font-bold text-sm flex items-center gap-2 shadow-sm transition-colors"><ShoppingCart size={16} /> Comprar en Amazon</button>
+            <button onClick={() => scrollTo('autor')} className="hover:text-[#EC008C] transition-colors">{CONTENT.navbar.links.about}</button>
+            <button onClick={() => scrollTo('recursos')} className="hover:text-[#00AEEF] transition-colors flex items-center gap-1"><Brain size={16} /> {CONTENT.navbar.links.resources}</button>
+            <button onClick={() => scrollTo('chat')} className="hover:text-[#F7941D] transition-colors flex items-center gap-1 text-gray-600 font-bold"><MessageCircle size={14} /> {CONTENT.navbar.links.support}</button>
+            <button onClick={() => scrollTo('reviews')} className="hover:text-[#B5006C] transition-colors">{CONTENT.navbar.links.reviews}</button>
+            <button onClick={openAmazon} className="bg-[#FF9900] hover:bg-[#ffad33] text-white px-6 py-2 rounded-md font-bold text-sm flex items-center gap-2 shadow-sm transition-colors"><ShoppingCart size={16} /> {CONTENT.navbar.cta}</button>
           </div>
           <button className="md:hidden text-gray-800 p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}><Menu /></button>
         </div>
@@ -114,10 +115,10 @@ function App() {
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div className="fixed inset-0 z-40 bg-white pt-20 px-6 space-y-4 md:hidden">
-          <button onClick={() => scrollTo('autor')} className="block w-full text-left py-3 text-lg border-b border-gray-100">Quiénes Somos</button>
-          <button onClick={() => scrollTo('recursos')} className="block w-full text-left py-3 text-lg border-b border-gray-100">Recursos</button>
-          <button onClick={() => scrollTo('chat')} className="block w-full text-left py-3 text-lg border-b border-gray-100">Soporte</button>
-          <button onClick={openAmazon} className="block w-full text-center bg-[#FF9900] text-white py-3 rounded-lg font-bold mt-4">Comprar en Amazon</button>
+          <button onClick={() => scrollTo('autor')} className="block w-full text-left py-3 text-lg border-b border-gray-100">{CONTENT.navbar.links.about}</button>
+          <button onClick={() => scrollTo('recursos')} className="block w-full text-left py-3 text-lg border-b border-gray-100">{CONTENT.navbar.links.resources}</button>
+          <button onClick={() => scrollTo('chat')} className="block w-full text-left py-3 text-lg border-b border-gray-100">{CONTENT.navbar.links.support}</button>
+          <button onClick={openAmazon} className="block w-full text-center bg-[#FF9900] text-white py-3 rounded-lg font-bold mt-4">{CONTENT.navbar.cta}</button>
         </div>
       )}
 
@@ -133,13 +134,13 @@ function App() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#EC008C] opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-[#EC008C]"></span>
                   </span>
-                  <span className="text-xs md:text-sm font-bold tracking-wide text-gray-600 whitespace-normal text-left">CON EL <span className="text-[#00AEEF]">MÉTODO ACTIVA</span> PUEDES TENER <span className="text-[#B5006C]">SALUD Y BIENESTAR</span></span>
+                  <span className="text-xs md:text-sm font-bold tracking-wide text-gray-600 whitespace-normal text-left">{CONTENT.hero.badge.prefix} <span className="text-[#00AEEF]">{CONTENT.hero.badge.highlight1}</span> {CONTENT.hero.badge.middle} <span className="text-[#B5006C]">{CONTENT.hero.badge.highlight2}</span></span>
                 </div>
-                <h1 className="text-4xl lg:text-6xl font-black leading-tight mb-6 text-gray-900">ACTIVA TU <br /><span className="bg-clip-text text-transparent bg-gradient-to-b from-[#FFD200] to-[#F7941D]">CUERPO</span>, <span className="bg-clip-text text-transparent bg-gradient-to-b from-[#2DD6F5] to-[#00AEEF]">MENTE</span> Y <span className="bg-clip-text text-transparent bg-gradient-to-b from-[#EC008C] to-[#B5006C]">CORAZÓN</span></h1>
-                <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">La <strong>musicoterapia es una herramienta que sana, clínicamente comprobado</strong>. Descubre cómo el Método Activa reduce el estrés, sana la ansiedad y recupera tu vitalidad en solo 21 días.</p>
+                <h1 className="text-4xl lg:text-6xl font-black leading-tight mb-6 text-gray-900">{CONTENT.hero.title.part1} <br /><span className="bg-clip-text text-transparent bg-gradient-to-b from-[#FFD200] to-[#F7941D]">{CONTENT.hero.title.gradient1}</span>, <span className="bg-clip-text text-transparent bg-gradient-to-b from-[#2DD6F5] to-[#00AEEF]">{CONTENT.hero.title.gradient2}</span> Y <span className="bg-clip-text text-transparent bg-gradient-to-b from-[#EC008C] to-[#B5006C]">{CONTENT.hero.title.gradient3}</span> {CONTENT.hero.title.suffix}</h1>
+                <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0" dangerouslySetInnerHTML={{ __html: CONTENT.hero.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}></p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <Button onClick={openAmazon} className="text-lg px-10 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all animate-pulse-ring" variant="amazon">Comprar en Amazon</Button>
-                  <Button variant="secondary" onClick={handleAccessRequest} className="hover:border-[#00AEEF] transition-colors">{hasRegistered ? <BookOpen size={20} /> : <Lock size={20} />} Leer primer capítulo</Button>
+                  <Button onClick={openAmazon} className="text-lg px-10 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all animate-pulse-ring" variant="amazon">{CONTENT.hero.cta_primary}</Button>
+                  <Button variant="secondary" onClick={handleAccessRequest} className="hover:border-[#00AEEF] transition-colors">{hasRegistered ? <BookOpen size={20} /> : <Lock size={20} />} {CONTENT.hero.cta_secondary}</Button>
                 </div>
 
                 {/* Enhanced Social Proof */}
@@ -197,29 +198,42 @@ function App() {
 
       <Section id="beneficios" className="bg-white">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16"><h2 className="text-3xl font-bold text-gray-900 mb-4">¿Por qué este libro está cambiando vidas?</h2><p className="text-gray-500 max-w-2xl mx-auto">Más que un libro, es una prescripción médica natural. Basado en estudios clínicos de neuroestética.</p></div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="space-y-8 perspective-[1000px]">
-              <div className="depth-card bg-white p-6 rounded-2xl border border-gray-50 shadow-sm"><BenefitRow category="body" icon={Activity} title="Reduce el Cortisol" desc="Aprende técnicas de 'arrastre rítmico' para calmar tu sistema nervioso y bajar la hormona del estrés en minutos." /></div>
-              <div className="depth-card bg-white p-6 rounded-2xl border border-gray-50 shadow-sm"><BenefitRow category="mind" icon={Brain} title="Claridad Mental" desc="Elimina la 'niebla mental' activando nuevas rutas neuronales a través de la estimulación estética y visual." /></div>
-              <div className="depth-card bg-white p-6 rounded-2xl border border-gray-50 shadow-sm"><BenefitRow category="heart" icon={Heart} title="Sanación Emocional" desc="Desbloquea traumas que las palabras no pueden alcanzar mediante el bypass del sistema límbico." /></div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{CONTENT.benefits.title}</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">{CONTENT.benefits.subtitle}</p>
+          </div>
+
+          {/* Seniors Section */}
+          <div className="mb-20">
+            <div className="flex items-center gap-4 mb-8 justify-center">
+              <div className="h-px bg-gray-200 flex-1 max-w-[100px]"></div>
+              <h3 className="text-2xl font-bold text-brand-pink text-center">{CONTENT.benefits.seniors.title}</h3>
+              <div className="h-px bg-gray-200 flex-1 max-w-[100px]"></div>
             </div>
-            <div className="hidden lg:flex items-center justify-center">
-              <div className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/20 via-brand-pink/20 to-brand-yellow/20 rounded-3xl blur-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-500"></div>
-                <div className="relative transform transition-all duration-700 ease-out group-hover:scale-105 group-hover:-translate-y-2">
-                  <img src={IMAGES.chart} alt="Visualización Artística de Cuerpo, Mente y Corazón" className="rounded-3xl shadow-2xl w-full max-w-sm object-cover border-4 border-white/50 backdrop-blur-sm h-96 group-hover:shadow-glow-blue transition-all duration-500" style={{ filter: 'contrast(1.05) saturate(1.1)', transform: 'perspective(1000px) rotateY(-5deg)', }} />
-                  <div className="absolute -bottom-4 -right-4 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl shadow-xl border border-gray-100 transform group-hover:scale-110 transition-transform">
-                    <p className="text-xs font-bold text-gray-500 uppercase tracking-wider">Tríada Maestra</p>
-                    <p className="text-sm font-bold bg-gradient-to-r from-brand-yellow via-brand-blue to-brand-pink bg-clip-text text-transparent">Cuerpo · Mente · Corazón</p>
-                  </div>
+            <p className="text-center text-gray-500 mb-8 -mt-6">{CONTENT.benefits.seniors.subtitle}</p>
+            <div className="grid md:grid-cols-3 gap-8 perspective-[1000px]">
+              {CONTENT.benefits.seniors.cards.map((card, idx) => (
+                <div key={idx} className="depth-card bg-white p-6 rounded-2xl border border-gray-50 shadow-sm">
+                  <BenefitRow category="heart" icon={card.icon} title={card.title} desc={card.desc} />
                 </div>
-              </div>
+              ))}
             </div>
-            <div className="space-y-8 perspective-[1000px]">
-              <div className="depth-card bg-white p-6 rounded-2xl border border-gray-50 shadow-sm"><BenefitRow category="body" icon={ShieldCheck} title="Refuerza Inmunidad" desc="La reducción del estrés crónico fortalece tu sistema inmunológico de forma natural." /></div>
-              <div className="depth-card bg-white p-6 rounded-2xl border border-gray-50 shadow-sm"><BenefitRow category="heart" icon={Users} title="Mejora Relaciones" desc="La regulación emocional te permite conectar con los demás desde la calma, no desde la reacción." /></div>
-              <div className="depth-card bg-white p-6 rounded-2xl border border-gray-50 shadow-sm"><BenefitRow category="mind" icon={Check} title="Plan de 21 Días" desc="Incluye una guía práctica paso a paso para integrar estos hábitos en tu rutina diaria sin esfuerzo." /></div>
+          </div>
+
+          {/* Kids Section */}
+          <div>
+            <div className="flex items-center gap-4 mb-8 justify-center">
+              <div className="h-px bg-gray-200 flex-1 max-w-[100px]"></div>
+              <h3 className="text-2xl font-bold text-brand-blue text-center">{CONTENT.benefits.kids.title}</h3>
+              <div className="h-px bg-gray-200 flex-1 max-w-[100px]"></div>
+            </div>
+            <p className="text-center text-gray-500 mb-8 -mt-6">{CONTENT.benefits.kids.subtitle}</p>
+            <div className="grid md:grid-cols-3 gap-8 perspective-[1000px]">
+              {CONTENT.benefits.kids.cards.map((card, idx) => (
+                <div key={idx} className="depth-card bg-white p-6 rounded-2xl border border-gray-50 shadow-sm">
+                  <BenefitRow category="mind" icon={card.icon} title={card.title} desc={card.desc} />
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -227,12 +241,12 @@ function App() {
 
       <Section id="recursos" className="bg-gray-50">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16"><h2 className="text-3xl font-bold text-gray-900 mb-4">Recursos Gratuitos para Lectores</h2><p className="text-gray-500 max-w-2xl mx-auto mb-8">Este libro no solo es teoría. Incluye un kit de herramientas y recursos prácticos validados por estudios clínicos. Regístrate para acceder al área de miembros.</p><Button onClick={handleAccessRequest} className="mx-auto group" variant="primary"><Download size={20} className="group-hover:animate-bounce" /> Acceder al Kit de Herramientas</Button></div>
+          <div className="text-center mb-16"><h2 className="text-3xl font-bold text-gray-900 mb-4">{CONTENT.resources.title}</h2><p className="text-gray-500 max-w-2xl mx-auto mb-8">{CONTENT.resources.subtitle}</p><Button onClick={handleAccessRequest} className="mx-auto group" variant="primary"><Download size={20} className="group-hover:animate-bounce" /> {CONTENT.resources.cta_download}</Button></div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="space-y-8">
-              <BenefitRow category="body" icon={Music} title="Playlists Terapéuticas" desc="Acceso a listas de música con 'arrastre rítmico' diseñadas para bajar el cortisol en minutos." />
-              <BenefitRow category="mind" icon={Brain} title="Ejercicios Cognitivos" desc="Técnicas de dibujo y visualización para eliminar la 'niebla mental' y activar nuevas rutas neuronales." />
-              <BenefitRow category="heart" icon={Heart} title="Diario Emocional" desc="Plantillas para desbloquear traumas que las palabras no pueden alcanzar mediante el bypass límbico." />
+              {CONTENT.resources.items.slice(0, 3).map((item, idx) => (
+                <BenefitRow key={idx} category={item.category} icon={item.icon} title={item.title} desc={item.desc} />
+              ))}
             </div>
             <div className="hidden lg:flex items-center justify-center p-8 bg-white rounded-3xl shadow-sm border border-gray-100">
               <div className="text-center">
@@ -246,9 +260,9 @@ function App() {
               </div>
             </div>
             <div className="space-y-8">
-              <BenefitRow category="body" icon={ShieldCheck} title="Guía Inmunológica" desc="Protocolos para fortalecer tu sistema inmunológico reduciendo el estrés crónico de forma natural." />
-              <BenefitRow category="heart" icon={Users} title="Dinámicas Grupales" desc="Ejercicios para mejorar relaciones conectando desde la calma y la regulación emocional." />
-              <BenefitRow category="mind" icon={FileText} title="Plan de 21 Días" desc="Tu hoja de ruta paso a paso para integrar estos hábitos en tu rutina diaria sin esfuerzo." />
+              {CONTENT.resources.items.slice(3, 6).map((item, idx) => (
+                <BenefitRow key={idx + 3} category={item.category} icon={item.icon} title={item.title} desc={item.desc} />
+              ))}
             </div>
           </div>
         </div>
@@ -281,15 +295,17 @@ function App() {
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Resultados Clínicos Reales</h2>
-              <div className="flex items-center gap-2"><div className="flex text-[#FF9900]"><Star fill="currentColor" size={20} /><Star fill="currentColor" size={20} /><Star fill="currentColor" size={20} /><Star fill="currentColor" size={20} /><Star fill="currentColor" size={20} /></div><span className="text-gray-600 font-medium">Recomendado por Profesionales de la Salud</span></div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">{CONTENT.reviews.title}</h2>
+              <div className="flex items-center gap-2"><div className="flex text-[#FF9900]"><Star fill="currentColor" size={20} /><Star fill="currentColor" size={20} /><Star fill="currentColor" size={20} /><Star fill="currentColor" size={20} /><Star fill="currentColor" size={20} /></div><span className="text-gray-600 font-medium">{CONTENT.reviews.subtitle}</span></div>
             </div>
-            <Button variant="ghost" onClick={openAmazon} className="text-[#00AEEF] hover:text-[#008CCF] mt-4 md:mt-0">Ver las 500+ reseñas <ArrowRight size={16} /></Button>
+            <Button variant="ghost" onClick={openAmazon} className="text-[#00AEEF] hover:text-[#008CCF] mt-4 md:mt-0">{CONTENT.reviews.cta_more} <ArrowRight size={16} /></Button>
           </div>
           <div className="grid md:grid-cols-3 gap-6 perspective-[1000px]">
-            <div className="depth-card bg-white rounded-2xl h-full"><AmazonReviewCard title="Resultados visibles en Parkinson" author="Dra. Elena M." date="15 de noviembre de 2024" text="Como neuróloga, he empezado a recomendar los ejercicios de 'Melodía Cinética' de este libro a mis pacientes. He observado una mejora del 40% en la fluidez de la marcha en solo un mes. Es un complemento clínico invaluable." /></div>
-            <div className="depth-card bg-white rounded-2xl h-full translate-y-4"><AmazonReviewCard title="Vital para la rehabilitación de Ictus" author="Javier L." date="3 de diciembre de 2024" text="Después de sufrir un Ictus, mi fisioterapia estaba estancada. El capítulo sobre 'Estimulación Rítmica Auditiva' me ayudó a recuperar la movilidad de mi brazo derecho cuando nada más funcionaba. Mi terapeuta está asombrado." /></div>
-            <div className="depth-card bg-white rounded-2xl h-full"><AmazonReviewCard title="Eficaz en TDAH y ansiedad clínica" author="Roberto F., Psicólogo" date="22 de enero de 2025" text="Integro el protocolo de 21 días con mis pacientes jóvenes con TDAH. La reducción en la agitación motora y los niveles de cortisol es medible y consistente. Por fin una herramienta no farmacológica que funciona." /></div>
+            {CONTENT.reviews.items.map((review, idx) => (
+              <div key={idx} className={`depth-card bg-white rounded-2xl h-full ${idx === 1 ? 'md:translate-y-4' : ''}`}>
+                <AmazonReviewCard title={review.title} author={review.author} date={review.date} text={review.text} />
+              </div>
+            ))}
           </div>
         </div>
       </Section>
@@ -342,11 +358,11 @@ function App() {
           </div>
 
           <div className="text-center text-gray-400 text-sm mb-6">
-            <p className="mb-4 font-bold text-white tracking-widest">MÉTODO ACTIVA &copy; {new Date().getFullYear()}</p>
+            <p className="mb-4 font-bold text-white tracking-widest">{CONTENT.footer.copyright}</p>
             <div className="flex justify-center gap-6 flex-wrap">
-              <a href="/legal" className="hover:text-[#00AEEF] transition-colors">Aviso Legal</a>
-              <a href="/privacidad" className="hover:text-[#00AEEF] transition-colors">Política de Privacidad</a>
-              <a href="mailto:info@metodoactiva.es" className="hover:text-[#00AEEF] transition-colors">Contacto</a>
+              <a href="/legal" className="hover:text-[#00AEEF] transition-colors">{CONTENT.footer.links.privacy}</a>
+              <a href="/privacidad" className="hover:text-[#00AEEF] transition-colors">{CONTENT.footer.links.terms}</a>
+              <a href="mailto:info@metodoactiva.es" className="hover:text-[#00AEEF] transition-colors">{CONTENT.footer.links.contact || "Contacto"}</a>
             </div>
           </div>
           <div className="text-center">
