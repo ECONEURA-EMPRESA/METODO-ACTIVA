@@ -27,6 +27,7 @@ export default {
                 'ping-slow': 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite',
                 'fade-in': 'fadeIn 0.5s ease-out',
                 'slide-up': 'slideUp 0.5s ease-out',
+                'shimmer': 'sheenMove 3s infinite linear',
             },
             keyframes: {
                 fadeIn: {

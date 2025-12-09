@@ -83,19 +83,31 @@ const BookReader = ({ onClose, onBuy }) => {
         switch (index) {
             case 0: // COVER
                 return (
-                    <div className="w-full h-full flex flex-col items-center justify-center relative shadow-inner rounded-r-sm overflow-hidden group cursor-pointer" onClick={handleNext}>
+                    <div className="w-full h-full flex flex-col items-center justify-center relative rounded-r-sm group cursor-pointer perspective-[1000px]" onClick={handleNext}>
+                        {/* 3D Hardcover Thickness (Right Edge) */}
+                        <div className="absolute top-1 bottom-1 -right-2 w-2 bg-[#ddd] transform rotate-y-90 origin-left border-l border-gray-300">
+                            <div className="w-full h-full bg-gradient-to-b from-gray-200 via-white to-gray-200 opacity-50"></div>
+                        </div>
+
+                        {/* Cover Image */}
                         <img
                             src={IMAGES.cover}
                             alt="Portada Método Activa"
-                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                            className="w-full h-full object-cover rounded-r-md shadow-2xl relative z-10"
                         />
-                        {/* Premium Glossy Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-white/20 via-transparent to-black/30 pointer-events-none mix-blend-overlay"></div>
-                        {/* Spine Depth Shadow */}
-                        <div className="absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-r from-black/50 to-transparent pointer-events-none mixture-multiply"></div>
+
+                        {/* Gold Foil / Premium Sheen Effect */}
+                        <div className="absolute inset-0 z-20 bg-gradient-to-tr from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-soft-light animate-shimmer"></div>
+
+                        {/* Texture Overlay */}
+                        <div className="absolute inset-0 z-20 opacity-[0.15] mix-blend-multiply pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3h1v1H1V3zm2-2h1v1H3V1z' fill='%23000' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E")` }}></div>
+
+                        {/* Spine Depth Shadow (Left) */}
+                        <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-black/60 to-transparent pointer-events-none mix-blend-multiply z-30"></div>
+
                         {/* Click hint */}
-                        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-md px-6 py-2 rounded-full text-sm font-bold text-gray-800 opacity-0 group-hover:opacity-100 transition-all duration-500 shadow-xl translate-y-2 group-hover:translate-y-0">
-                            Abrir Libro
+                        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-md px-8 py-3 rounded-full text-brand-dark/80 font-bold uppercase tracking-widest text-xs opacity-0 group-hover:opacity-100 transition-all duration-500 shadow-[0_10px_20px_rgba(0,0,0,0.2)] translate-y-4 group-hover:translate-y-0 z-40 border border-white/50">
+                            Abrir Manual
                         </div>
                     </div>
                 );
@@ -233,10 +245,13 @@ const BookReader = ({ onClose, onBuy }) => {
                 <div className="relative w-full h-full flex rounded-lg shadow-2xl transition-all duration-300">
 
                     {/* Left Page (Desktop only - Static Backing) */}
-                    <div className="hidden md:block relative w-1/2 h-full bg-[#f0eee9] rounded-l-lg border-r border-gray-300/50 overflow-hidden">
-                        {/* Static Shadow Gradient */}
-                        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-black/10 to-transparent pointer-events-none mix-blend-multiply"></div>
-                        <div className="absolute left-0 top-0 bottom-0 w-2 bg-white/40 pointer-events-none mix-blend-overlay"></div>
+                    <div className="hidden md:block relative w-1/2 h-full bg-[#f4f1ea] rounded-l-md border-r border-[#e0dad0] overflow-hidden shadow-[inset_-10px_0_20px_rgba(0,0,0,0.1)]">
+                        {/* Realistic Gutter Shadow */}
+                        <div className="absolute right-0 top-0 bottom-0 w-28 bg-gradient-to-l from-black/20 via-black/5 to-transparent pointer-events-none mix-blend-multiply"></div>
+                        {/* Paper Texture */}
+                        <div className="absolute inset-0 opacity-[0.3] pointer-events-none mix-blend-multiply" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3h1v1H1V3zm2-2h1v1H3V1z' fill='%23554433' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E")` }}></div>
+                        {/* Stacked Pages Effect (Left Edge) */}
+                        <div className="absolute left-0 top-1 bottom-1 w-1 bg-gradient-to-r from-[#ddd] to-[#fff] border-r border-gray-300"></div>
                     </div>
 
                     {/* Right Page (Active) */}
@@ -246,8 +261,11 @@ const BookReader = ({ onClose, onBuy }) => {
                             <PageContent index={page} />
                         </div>
 
-                        {/* Middle Spine Shadow Overlay */}
-                        <div className="absolute top-0 bottom-0 left-0 w-16 bg-gradient-to-r from-black/15 to-transparent pointer-events-none mix-blend-multiply z-20"></div>
+                        {/* Middle Spine Shadow Overlay - Realistic Depth */}
+                        <div className="absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-black/20 via-black/5 to-transparent pointer-events-none mix-blend-multiply z-20"></div>
+
+                        {/* Stacked Pages Effect (Right Edge) */}
+                        <div className="absolute right-0 top-1 bottom-1 w-1.5 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiLz48L3N2Zz4=')] opacity-50 z-20 border-l border-gray-200"></div>
 
                         {/* Turning Page Animation */}
                         {isFlipping && (
