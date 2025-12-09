@@ -42,7 +42,7 @@ export const CONTENT = {
         }
     },
     benefits: {
-        title: "Tres Dimensiones de Conexión",
+        title: "",
         subtitle: "El arte es el puente invisible que une lo que la vida separó. Empieza por ti.",
 
         cards: [

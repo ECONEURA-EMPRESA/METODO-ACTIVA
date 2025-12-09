@@ -199,7 +199,6 @@ function App() {
       <Section id="beneficios" className="bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">{CONTENT.benefits.title}</h2>
             <p className="text-gray-500 max-w-2xl mx-auto">{CONTENT.benefits.subtitle}</p>
           </div>
 
