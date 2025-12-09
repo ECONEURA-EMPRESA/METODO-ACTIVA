@@ -1,0 +1,47 @@
+{
+    "name": "Método Activa - Musicoterapia para Salud y Bienestar",
+    "short_name": "Método Activa",
+    "description": "El libro de musicoterapia que reduce el estrés, sana la ansiedad y mejora tu bienestar en 21 días.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#F8FAFC",
+    "theme_color": "#EC008C",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "es",
+    "categories": [
+        "books",
+        "health",
+        "lifestyle"
+    ],
+    "icons": [
+        {
+            "src": "/logo.jpg",
+            "sizes": "192x192",
+            "type": "image/jpeg",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/logo.jpg",
+            "sizes": "512x512",
+            "type": "image/jpeg",
+            "purpose": "any maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/logo.jpg",
+            "sizes": "1280x720",
+            "type": "image/jpeg",
+            "form_factor": "wide",
+            "label": "Método Activa - Página Principal"
+        }
+    ],
+    "related_applications": [
+        {
+            "platform": "web",
+            "url": "https://metodoactiva.es"
+        }
+    ],
+    "prefer_related_applications": false
+}
