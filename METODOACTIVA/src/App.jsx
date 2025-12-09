@@ -202,50 +202,52 @@ function App() {
             <p className="text-gray-500 max-w-2xl mx-auto">{CONTENT.benefits.subtitle}</p>
           </div>
 
-          {/* Centered Connection Image */}
-          <div className="flex justify-center mb-16">
-            <div className="relative w-full max-w-lg">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#EC008C] to-[#00AEEF] rounded-full blur-[60px] opacity-20 animate-pulse"></div>
-              <img
-                src="/connection-art.png"
-                alt="Arte de Conexión"
-                className="relative z-10 w-full h-auto object-cover rounded-2xl shadow-2xl hover:scale-[1.02] transition-transform duration-500"
-              />
-            </div>
-          </div>
 
-          {/* Seniors Section */}
-          <div className="mb-20">
-            <div className="flex items-center gap-4 mb-8 justify-center">
-              <div className="h-px bg-gray-200 flex-1 max-w-[100px]"></div>
-              <h3 className="text-2xl font-bold text-brand-pink text-center">Para Mayores</h3>
-              <div className="h-px bg-gray-200 flex-1 max-w-[100px]"></div>
-            </div>
-            <p className="text-center text-gray-500 mb-8 -mt-6">Recupera la conexión y la memoria</p>
-            <div className="grid md:grid-cols-2 gap-8 perspective-[1000px] justify-center max-w-4xl mx-auto">
-              {CONTENT.benefits.cards.slice(0, 2).map((card, idx) => (
-                <div key={idx} className="depth-card bg-white p-6 rounded-2xl border border-gray-50 shadow-sm">
-                  <BenefitRow category="heart" icon={card.icon} title={card.title} desc={card.desc} />
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* 3-Column Layout: Seniors - Image - Kids */}
+          <div className="grid lg:grid-cols-3 gap-8 items-start">
 
-          {/* Kids Section */}
-          <div>
-            <div className="flex items-center gap-4 mb-8 justify-center">
-              <div className="h-px bg-gray-200 flex-1 max-w-[100px]"></div>
-              <h3 className="text-2xl font-bold text-brand-blue text-center">Para Niños</h3>
-              <div className="h-px bg-gray-200 flex-1 max-w-[100px]"></div>
+            {/* Seniors Column (Left) */}
+            <div className="space-y-8">
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold text-brand-pink">Para Mayores</h3>
+                <p className="text-gray-500 text-sm">Recupera la conexión y la memoria</p>
+              </div>
+              <div className="space-y-6">
+                {CONTENT.benefits.cards.slice(0, 2).map((card, idx) => (
+                  <div key={idx} className="depth-card bg-white p-6 rounded-2xl border border-gray-50 shadow-sm">
+                    <BenefitRow category="heart" icon={card.icon} title={card.title} desc={card.desc} />
+                  </div>
+                ))}
+              </div>
             </div>
-            <p className="text-center text-gray-500 mb-8 -mt-6">Calma y Vínculo Emocional</p>
-            <div className="grid md:grid-cols-2 gap-8 perspective-[1000px] justify-center max-w-4xl mx-auto">
-              {CONTENT.benefits.cards.slice(2, 4).map((card, idx) => (
-                <div key={idx} className="depth-card bg-white p-6 rounded-2xl border border-gray-50 shadow-sm">
-                  <BenefitRow category="mind" icon={card.icon} title={card.title} desc={card.desc} />
-                </div>
-              ))}
+
+            {/* Central Image Column */}
+            <div className="order-first lg:order-none mb-12 lg:mb-0 flex flex-col justify-center h-full">
+              <div className="relative w-full aspect-[3/4] max-w-sm mx-auto">
+                <div className="absolute inset-0 bg-gradient-to-r from-[#EC008C] to-[#00AEEF] rounded-full blur-[80px] opacity-30 animate-pulse"></div>
+                <img
+                  src="/connection-art.png"
+                  alt="Arte de Conexión"
+                  className="relative z-10 w-full h-full object-cover rounded-3xl shadow-2xl hover:scale-[1.02] transition-transform duration-500"
+                />
+              </div>
             </div>
+
+            {/* Kids Column (Right) */}
+            <div className="space-y-8">
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold text-brand-blue">Para Niños</h3>
+                <p className="text-gray-500 text-sm">Calma y Vínculo Emocional</p>
+              </div>
+              <div className="space-y-6">
+                {CONTENT.benefits.cards.slice(2, 4).map((card, idx) => (
+                  <div key={idx} className="depth-card bg-white p-6 rounded-2xl border border-gray-50 shadow-sm">
+                    <BenefitRow category="mind" icon={card.icon} title={card.title} desc={card.desc} />
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
       </Section>
