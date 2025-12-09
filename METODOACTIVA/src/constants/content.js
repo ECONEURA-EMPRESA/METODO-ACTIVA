@@ -1,133 +1,137 @@
-import { Music, Brain, Heart, Sparkles, Users, Smile, Sun, HandHeart } from 'lucide-react';
+import { Music, Brain, Heart, Sparkles, Users, Smile, Sun, Anchor, Infinity, HandHeart } from 'lucide-react';
 
 export const CONTENT = {
     navbar: {
         brand: "MÉTODO ACTIVA",
         links: {
-            about: "El Propósito",
-            resources: "Recursos de Unión",
+            about: "El Arte de Conectar",
+            resources: "Recursos Gratuitos",
             support: "Sesiones",
-            reviews: "Familias"
+            reviews: "Historias Reales"
         },
-        cta: "Conseguir el Libro"
+        cta: "Manual en Amazon"
     },
     hero: {
         badge: {
-            prefix: "NO DEJES QUE LA",
-            highlight1: "SOLEDAD",
-            middle: "GANÉ LA",
-            highlight2: "PARTIDA"
+            prefix: "UN VIAJE HACIA",
+            highlight1: "TI MISM@",
+            middle: "Y HACIA",
+            highlight2: "ELLOS"
         },
         title: {
-            part1: "EL ARTE",
-            gradient1: "CONECTA",
-            gradient2: "CORAZONES",
-            gradient3: "SOLITARIOS"
+            part1: "DESCUBRE",
+            gradient1: "EL ARTE",
+            gradient2: "DE",
+            gradient3: "CONECTAR"
         },
-        description: "Cuando la vejez trae silencio o la infancia trae barreras, la música tiende un puente. El **Método Activa** es tu guía para **vencer la soledad en tus mayores** y **crear un vínculo inquebrantable con tus niños**. 21 sesiones para decir 'Te quiero' sin palabras.",
+        description: "Cuando las palabras se apagan, la música enciende el vínculo. El **Método Activa** es un manual de 21 sesiones prácticas para dominar **el arte de conectar**: calma tu propio ruido mental, disuelve la soledad de tus **mayores** y entra en el mundo de tus **niños**. La medicina es el vínculo.",
         cta_primary: "Ver Libro en Amazon",
-        cta_secondary: "Probar una Sesión Juntos",
-        rating: "4.9/5",
-        reviews_count: "(Hijos y padres que volvieron a conectar)",
-        shipping: "Disponible en Tapa Blanda (Para regalar)",
+        cta_secondary: "Descargar Sesión Gratis",
+        rating: "5.0/5",
+        reviews_count: "(Vínculos restaurados)",
+        shipping: "Envío Rápido con Prime",
         badges: [
-            "Contra la Soledad",
-            "Vínculo Familiar",
-            "Amor en Acción"
+            "Conexión Humana",
+            "Autocuidado",
+            "Musicoterapia"
         ],
         book_badge: {
-            category: "Best Seller en",
-            rank: "Cuidado Familiar"
+            category: "Nº1 en",
+            rank: "Cuidado Emocional"
         }
     },
     benefits: {
-        title: "¿A quién vas a recuperar hoy?",
-        subtitle: "La musicoterapia no solo cura el cuerpo, cura la distancia entre las personas.",
+        title: "Tres Dimensiones de Conexión",
+        subtitle: "El arte es el puente invisible que une lo que la vida separó. Empieza por ti.",
 
         cards: [
-            // --- BLOQUE MAYORES (SOLEDAD Y PRESENCIA) ---
+            // --- NIVEL 1: CONEXIÓN INTERNA (AUTOCUIDADO) ---
             {
-                category: "heart", // Color cálido
-                icon: Sun,
-                title: "Mayores: Adiós a la Soledad",
-                desc: "El silencio de la vejez duele. Llena su casa de melodías y vida. Comparte una canción y verás cómo su mirada se ilumina, sintiéndose acompañados y valiosos de nuevo."
-            },
-            {
-                category: "mind",
-                icon: Brain,
-                title: "Mayores: Recuerdos Compartidos",
-                desc: "El Alzheimer puede borrar datos, pero no emociones. Usa la música para viajar juntos a sus mejores momentos y tener conversaciones desde el corazón, no desde la memoria."
+                category: "heart", // Color cálido (Rosa/Rojo)
+                icon: Anchor, // Icono de Ancla
+                title: "1. Conectar Contigo (Tu Calma)",
+                desc: "No puedes sostener a nadie si tú te caes. Usa frecuencias sonoras para regular tu sistema nervioso, silenciar la culpa y recuperar la energía para cuidar desde el amor, no desde el agotamiento."
             },
 
-            // --- BLOQUE NIÑOS (CONEXIÓN Y ENTENDIMIENTO) ---
+            // --- NIVEL 2: CONEXIÓN VITAL (MAYORES) ---
             {
-                category: "body",
-                icon: HandHeart, // Icono de mano y corazón
-                title: "Niños: Entrar en su Mundo",
-                desc: "A veces no quieren hablar, pero siempre quieren jugar. Usa el arte y el ritmo para entrar en su burbuja y construir un puente de confianza donde se sientan seguros."
+                category: "body", // Color vital (Naranja)
+                icon: Sun, // Icono de Sol/Vida
+                title: "2. Conectar con su Historia",
+                desc: "La soledad del anciano duele. La música es la llave maestra de la memoria: reactiva su identidad, despierta recuerdos dormidos y os regala momentos de lucidez compartida."
             },
+
+            // --- NIVEL 3: CONEXIÓN EMOCIONAL (NIÑOS) ---
+            {
+                category: "mind", // Color mental/calma (Azul/Violeta)
+                icon: Infinity, // Icono de Infinito (Neurodivergencia/Vínculo eterno)
+                title: "3. Conectar con su Mundo",
+                desc: "Si no pueden venir a tu mundo, ve tú al suyo. Usa el juego sonoro para cruzar la barrera del TDAH o el autismo, transformando las crisis en un lenguaje de confianza y risa."
+            },
+
+            // --- EL RESULTADO: PRESENCIA ---
             {
                 category: "heart",
-                icon: Smile,
-                title: "Niños: Alegría Compartida",
-                desc: "Transforma las rutinas difíciles en juegos sonoros. Cambia el conflicto por la risa y fortalece el vínculo afectivo que les protegerá toda la vida."
+                icon: HandHeart, // Icono de mano dando amor
+                title: "El Resultado: Presencia Real",
+                desc: "Dejamos de 'gestionar' pacientes para empezar a 'vivir' con personas. El Método Activa te regala el arte de estar presente, aquí y ahora, a través de la belleza."
             }
         ]
     },
     resources: {
-        title: "Cread un Momento Mágico Hoy",
-        subtitle: "No esperes a tener el libro. Descarga la **Sesión de Conexión Nº1** y dedica 10 minutos a mirar a los ojos y disfrutar con tu ser querido.",
-        cta_download: "Descargar Guía de Conexión",
+        title: "Empieza a Conectar Hoy Mismo",
+        subtitle: "No esperes a que llegue el libro. Descarga la **Sesión Nº1** y siente cómo cambia la energía en casa en solo 10 minutos.",
+        cta_download: "Recibir Guía de Conexión",
         items: [
             {
                 category: "heart",
-                icon: Users,
-                title: "Guía: Tu Primer Encuentro Musical",
-                desc: "Instrucciones sencillas para hacer una actividad que rompa el hielo y genere sonrisas inmediatas."
+                icon: Music,
+                title: "Audio: Tu Refugio Sonoro",
+                desc: "Una pista de 5 minutos diseñada para bajar tus pulsaciones antes de entrar en la habitación de tu familiar."
             },
             {
                 category: "body",
-                icon: Music,
-                title: "Playlist: Abrazos Sonoros",
-                desc: "Una selección musical curada científicamente para generar oxitocina (la hormona del amor) y calma ambiental."
+                icon: Users,
+                title: "Dinámica: El Hilo Invisible",
+                desc: "Un ejercicio sencillo de ritmo compartido para sentir la unión física y emocional sin necesidad de hablar."
             },
             {
                 category: "mind",
                 icon: Sparkles,
-                title: "Diario de Momentos",
-                desc: "Un espacio para anotar esas miradas, esas palabras y esos gestos que la música os ha regalado hoy."
+                title: "Guía de Ambiente",
+                desc: "Cómo preparar la luz y el sonido de tu hogar para favorecer la calma y la apertura emocional."
             }
         ]
     },
     reviews: {
-        title: "Vínculos Restaurados",
-        subtitle: "Lo que sucede cuando el arte entra en casa.",
-        cta_more: "Leer historias emotivas en Amazon",
+        title: "Historias de Reencuentro",
+        subtitle: "Familias que cruzaron el puente y se volvieron a encontrar.",
+        cta_more: "Leer más reseñas en Amazon",
         items: [
             {
-                title: "Ya no se siente sola",
-                text: "Mi madre pasaba los días mirando la ventana. Con las sesiones de música del libro, ahora canta, baila en su silla y me espera con ilusión. Ha vuelto a la vida.",
-                author: "Carmen D., Hija",
-                date: "Compra verificada"
+                title: "Me devolvió a mi madre",
+                text: "El Alzheimer nos había robado las palabras. Con la sesión de 'Canciones de Vida' del libro, mi madre volvió a mirarme a los ojos y cantamos juntas. Ese momento vale oro.",
+                author: "Lucía P., Hija",
+                date: "Hace 1 semana"
             },
             {
-                title: "Por fin nos entendemos",
-                text: "Mi hijo con autismo no me dejaba abrazarle. A través de los juegos rítmicos del Método Activa, ahora buscamos el contacto y nos reímos juntos. Es un milagro.",
-                author: "David L., Padre",
-                date: "Compra verificada"
+                title: "Entendí a mi hijo",
+                text: "Mi hijo con autismo se aislaba. Aprendí a usar el 'Silencio Activo' del método y él se acercó a mí para completar el ritmo. Lloré de felicidad. Gracias por enseñarme a conectar.",
+                author: "Marc T., Padre",
+                date: "Hace 3 días"
             },
             {
-                title: "El mejor regalo para mi abuelo",
-                text: "No sabía qué regalarle y le di mi tiempo con este libro. Hemos descubierto que le encanta pintar escuchando jazz. Es nuestro momento sagrado.",
-                author: "Sofía, Nieta",
-                date: "Compra verificada"
+                title: "Paz para la cuidadora",
+                text: "Compré el libro para mi abuelo, pero me salvó a mí. Aprendí a respirar y a usar la música para no quemarme. Ahora disfruto cuidando.",
+                author: "Elena R., Cuidadora",
+                date: "Hace 2 semanas"
             }
         ]
     },
     footer: {
-        copyright: "© 2025 Método Activa. El Arte Conecta Personas.",
+        copyright: "© 2025 Método Activa. El Arte de Conectar Personas.",
         links: {
-            privacy: "Privacidad",
+            privacy: "Política de Privacidad",
             terms: "Aviso Legal",
             cookies: "Cookies"
         }

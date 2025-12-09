@@ -207,12 +207,12 @@ function App() {
           <div className="mb-20">
             <div className="flex items-center gap-4 mb-8 justify-center">
               <div className="h-px bg-gray-200 flex-1 max-w-[100px]"></div>
-              <h3 className="text-2xl font-bold text-brand-pink text-center">{CONTENT.benefits.seniors.title}</h3>
+              <h3 className="text-2xl font-bold text-brand-pink text-center">Para Mayores</h3>
               <div className="h-px bg-gray-200 flex-1 max-w-[100px]"></div>
             </div>
-            <p className="text-center text-gray-500 mb-8 -mt-6">{CONTENT.benefits.seniors.subtitle}</p>
-            <div className="grid md:grid-cols-3 gap-8 perspective-[1000px]">
-              {CONTENT.benefits.seniors.cards.map((card, idx) => (
+            <p className="text-center text-gray-500 mb-8 -mt-6">Recupera la conexión y la memoria</p>
+            <div className="grid md:grid-cols-2 gap-8 perspective-[1000px] justify-center max-w-4xl mx-auto">
+              {CONTENT.benefits.cards.slice(0, 2).map((card, idx) => (
                 <div key={idx} className="depth-card bg-white p-6 rounded-2xl border border-gray-50 shadow-sm">
                   <BenefitRow category="heart" icon={card.icon} title={card.title} desc={card.desc} />
                 </div>
@@ -224,12 +224,12 @@ function App() {
           <div>
             <div className="flex items-center gap-4 mb-8 justify-center">
               <div className="h-px bg-gray-200 flex-1 max-w-[100px]"></div>
-              <h3 className="text-2xl font-bold text-brand-blue text-center">{CONTENT.benefits.kids.title}</h3>
+              <h3 className="text-2xl font-bold text-brand-blue text-center">Para Niños</h3>
               <div className="h-px bg-gray-200 flex-1 max-w-[100px]"></div>
             </div>
-            <p className="text-center text-gray-500 mb-8 -mt-6">{CONTENT.benefits.kids.subtitle}</p>
-            <div className="grid md:grid-cols-3 gap-8 perspective-[1000px]">
-              {CONTENT.benefits.kids.cards.map((card, idx) => (
+            <p className="text-center text-gray-500 mb-8 -mt-6">Calma y Vínculo Emocional</p>
+            <div className="grid md:grid-cols-2 gap-8 perspective-[1000px] justify-center max-w-4xl mx-auto">
+              {CONTENT.benefits.cards.slice(2, 4).map((card, idx) => (
                 <div key={idx} className="depth-card bg-white p-6 rounded-2xl border border-gray-50 shadow-sm">
                   <BenefitRow category="mind" icon={card.icon} title={card.title} desc={card.desc} />
                 </div>
@@ -244,7 +244,7 @@ function App() {
           <div className="text-center mb-16"><h2 className="text-3xl font-bold text-gray-900 mb-4">{CONTENT.resources.title}</h2><p className="text-gray-500 max-w-2xl mx-auto mb-8">{CONTENT.resources.subtitle}</p><Button onClick={handleAccessRequest} className="mx-auto group" variant="primary"><Download size={20} className="group-hover:animate-bounce" /> {CONTENT.resources.cta_download}</Button></div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="space-y-8">
-              {CONTENT.resources.items.slice(0, 3).map((item, idx) => (
+              {CONTENT.resources.items.slice(0, 2).map((item, idx) => (
                 <BenefitRow key={idx} category={item.category} icon={item.icon} title={item.title} desc={item.desc} />
               ))}
             </div>
@@ -260,8 +260,8 @@ function App() {
               </div>
             </div>
             <div className="space-y-8">
-              {CONTENT.resources.items.slice(3, 6).map((item, idx) => (
-                <BenefitRow key={idx + 3} category={item.category} icon={item.icon} title={item.title} desc={item.desc} />
+              {CONTENT.resources.items.slice(2, 4).map((item, idx) => (
+                <BenefitRow key={idx + 2} category={item.category} icon={item.icon} title={item.title} desc={item.desc} />
               ))}
             </div>
           </div>
