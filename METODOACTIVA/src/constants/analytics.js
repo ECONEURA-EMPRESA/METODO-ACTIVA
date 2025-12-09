@@ -56,7 +56,7 @@ export const trackMetaEvent = (eventName, params = {}) => {
 
 // Unified tracking function (sends to all platforms)
 export const trackEvent = (eventName, params = {}) => {
-    console.log(`[TRACK] ${eventName}`, params);
+    // Production-ready: no console.log
     trackGA4Event(eventName, params);
     trackMetaEvent(eventName, params);
 };

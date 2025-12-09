@@ -27,7 +27,7 @@ const CustomerSupportChat = () => {
     const playNotification = () => {
         try {
             audioRef.current.currentTime = 0;
-            audioRef.current.play().catch(e => console.log("Audio play failed (user interaction needed)", e));
+            audioRef.current.play().catch(() => { /* Audio needs user interaction */ });
         } catch (e) {
             console.error(e);
         }
