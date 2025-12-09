@@ -16,9 +16,12 @@ const CustomerSupportChat = () => {
     const [loading, setLoading] = useState(false);
     const messagesEndRef = useRef(null);
     const inputRef = useRef(null);
-    const audioRef = useRef(new Audio(NOTIFICATION_SOUND));
+    const audioRef = useRef(null); // Initializes as null
 
     useEffect(() => {
+        // Initializes only once on mount
+        audioRef.current = new Audio(NOTIFICATION_SOUND);
+
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
         // Auto-focus on mount
         inputRef.current?.focus();
@@ -26,8 +29,10 @@ const CustomerSupportChat = () => {
 
     const playNotification = () => {
         try {
-            audioRef.current.currentTime = 0;
-            audioRef.current.play().catch(() => { /* Audio needs user interaction */ });
+            if (audioRef.current) {
+                audioRef.current.currentTime = 0;
+                audioRef.current.play().catch(() => { /* Audio needs user interaction */ });
+            }
         } catch (e) {
             console.error(e);
         }

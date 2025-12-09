@@ -12,14 +12,18 @@ const BookReader = ({ onClose, onBuy }) => {
     const touchStartX = useRef(null);
     const totalPages = 4;
 
-    // 3D Tilt effect on mouse move - REFINED for subtle premium feel
+    // 3D Tilt effect on mouse move - OPTIMIZED with requestAnimationFrame
     const handleMouseMove = (e) => {
         if (!bookRef.current) return;
-        const rect = bookRef.current.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        // Reduced tilt intensity for more "heavy/solid" feel
-        setTilt({ x: y * 5, y: -x * 5 });
+
+        // Simple throttling using rAF
+        requestAnimationFrame(() => {
+            const rect = bookRef.current.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            // Reduced tilt intensity for more "heavy/solid" feel
+            setTilt({ x: y * 5, y: -x * 5 });
+        });
     };
 
     const handleMouseLeave = () => {
