@@ -15,7 +15,7 @@ const AdminDashboard = ({ isOpen, onClose }) => {
         setLoading(true);
         setError('');
 
-        if (accessKey !== "AURORA_MASTER_2025") {
+        if (accessKey !== import.meta.env.VITE_ADMIN_KEY) {
             setError('Clave incorrecta');
             setLoading(false);
             return;
