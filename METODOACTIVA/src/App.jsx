@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import {
   BookOpen, Heart, Brain, Activity, ArrowRight, Menu, X,
   ShoppingCart, Star, Check, ShieldCheck, Truck, Users,
@@ -9,11 +9,20 @@ import Button from './components/ui/Button';
 import Section from './components/ui/Section';
 import FadeIn from './components/ui/FadeIn';
 import { LeadMagnetModal, BenefitRow, AmazonReviewCard } from './components/ui/Cards';
-import BookReader from './components/book/BookReader';
-import CustomerSupportChat from './components/chat/CustomerSupportChat';
-import AdminDashboard from './components/AdminDashboard';
-import ArtGallery from './components/gallery/ArtGallery';
 import { IMAGES } from './constants/images';
+
+// Lazy Load Heavy Components
+const BookReader = lazy(() => import('./components/book/BookReader'));
+const CustomerSupportChat = lazy(() => import('./components/chat/CustomerSupportChat'));
+const AdminDashboard = lazy(() => import('./components/AdminDashboard'));
+const ArtGallery = lazy(() => import('./components/gallery/ArtGallery'));
+
+// Loading Fallback
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center p-8">
+    <Loader2 className="w-8 h-8 text-[#EC008C] animate-spin" />
+  </div>
+);
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,14 +34,21 @@ function App() {
   const [isAdminOpen, setIsAdminOpen] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-      // Calculate scroll progress
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (window.scrollY / totalHeight) * 100;
-      setScrollProgress(Math.min(progress, 100));
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20);
+          // Calculate scroll progress
+          const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = (window.scrollY / totalHeight) * 100;
+          setScrollProgress(Math.min(progress, 100));
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     // Smooth scroll for all anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -239,7 +255,9 @@ function App() {
       </Section>
 
       {/* Premium Art Gallery */}
-      <ArtGallery />
+      <Suspense fallback={<div className="h-96 flex items-center justify-center bg-gray-50"><Loader2 className="w-8 h-8 text-[#EC008C] animate-spin" /></div>}>
+        <ArtGallery />
+      </Suspense>
 
       <Section id="chat" className="bg-white">
         <div className="container mx-auto px-6 text-center">
@@ -253,7 +271,9 @@ function App() {
               </div>
             </div>
           </div>
-          <CustomerSupportChat />
+          <Suspense fallback={<div className="h-[600px] flex items-center justify-center bg-white rounded-2xl shadow-xl border border-gray-100"><Loader2 className="w-8 h-8 text-[#EC008C] animate-spin" /></div>}>
+            <CustomerSupportChat />
+          </Suspense>
         </div>
       </Section>
 
@@ -361,8 +381,10 @@ function App() {
       </div>
 
       <LeadMagnetModal isOpen={showLeadModal} onClose={() => setShowLeadModal(false)} onSuccess={handleLeadSuccess} />
-      {showContentModal && <BookReader onClose={() => setShowContentModal(false)} onBuy={openAmazon} />}
-      <AdminDashboard isOpen={isAdminOpen} onClose={() => setIsAdminOpen(false)} />
+      <Suspense fallback={<LoadingSpinner />}>
+        {showContentModal && <BookReader onClose={() => setShowContentModal(false)} onBuy={openAmazon} />}
+        <AdminDashboard isOpen={isAdminOpen} onClose={() => setIsAdminOpen(false)} />
+      </Suspense>
 
       {/* Scroll to Top Button */}
       {
