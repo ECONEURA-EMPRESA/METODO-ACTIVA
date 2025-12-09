@@ -87,7 +87,7 @@ function App() {
         />
       </div>
 
-      <nav className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-3' : 'bg-white/90 backdrop-blur-md py-4'}`}>
+      <nav className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'glass-ultra py-3' : 'bg-white/90 backdrop-blur-sm py-4'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-3 cursor-pointer group" onClick={() => scrollTo('hero')}>
             <div className="relative isolate">
@@ -125,6 +125,16 @@ function App() {
       <div id="hero" className="relative pt-12 pb-20 bg-white overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#EC008C] rounded-full blur-[180px] opacity-10 pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#2DD6F5] rounded-full blur-[180px] opacity-10 pointer-events-none"></div>
+
+        {/* Floating Particles (Music Notes & Hearts) */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none select-none z-0">
+          <Music className="absolute top-[20%] left-[10%] text-brand-pink/20 animate-float-particle" size={32} style={{ animationDelay: '0s' }} />
+          <Heart className="absolute top-[30%] right-[15%] text-brand-blue/20 animate-float-particle" size={24} style={{ animationDelay: '2s' }} />
+          <Music className="absolute bottom-[20%] left-[20%] text-brand-yellow/20 animate-float-particle" size={20} style={{ animationDelay: '4s' }} />
+          <Activity className="absolute top-[15%] left-[50%] text-brand-pink/10 animate-float-particle" size={40} style={{ animationDelay: '1s' }} />
+          <Heart className="absolute bottom-[30%] right-[30%] text-brand-blue/10 animate-float-particle" size={28} style={{ animationDelay: '3s' }} />
+        </div>
+
         <div className="container mx-auto px-6 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-1/2 text-center lg:text-left z-10">
@@ -136,10 +146,10 @@ function App() {
                   </span>
                   <span className="text-xs md:text-sm font-bold tracking-wide text-gray-600 whitespace-normal text-left">{CONTENT.hero.badge.prefix} <span className="text-[#00AEEF]">{CONTENT.hero.badge.highlight1}</span> {CONTENT.hero.badge.middle} <span className="text-[#B5006C]">{CONTENT.hero.badge.highlight2}</span></span>
                 </div>
-                <h1 className="text-4xl lg:text-6xl font-black leading-tight mb-6 text-gray-900">{CONTENT.hero.title.part1} <br /><span className="bg-clip-text text-transparent bg-gradient-to-b from-[#FFD200] to-[#F7941D]">{CONTENT.hero.title.gradient1}</span>, <span className="bg-clip-text text-transparent bg-gradient-to-b from-[#2DD6F5] to-[#00AEEF]">{CONTENT.hero.title.gradient2}</span> Y <span className="bg-clip-text text-transparent bg-gradient-to-b from-[#EC008C] to-[#B5006C]">{CONTENT.hero.title.gradient3}</span> {CONTENT.hero.title.suffix}</h1>
+                <h1 className="text-4xl lg:text-6xl font-black leading-tight mb-6 text-gray-900">{CONTENT.hero.title.part1} <br /><span className="shimmer-yellow">{CONTENT.hero.title.gradient1}</span>, <span className="shimmer-blue">{CONTENT.hero.title.gradient2}</span> Y <span className="shimmer-pink">{CONTENT.hero.title.gradient3}</span> {CONTENT.hero.title.suffix}</h1>
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0" dangerouslySetInnerHTML={{ __html: CONTENT.hero.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}></p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <Button onClick={openAmazon} className="text-lg px-10 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all animate-pulse-ring" variant="amazon">{CONTENT.hero.cta_primary}</Button>
+                  <Button onClick={openAmazon} className="text-lg px-10 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all animate-heartbeat bg-gradient-to-r from-[#F7941D] to-[#EC008C] bg-[length:200%_auto] hover:bg-[position:right_center] transition-[background-position] duration-500" variant="amazon">{CONTENT.hero.cta_primary}</Button>
                   <Button variant="secondary" onClick={handleAccessRequest} className="hover:border-[#00AEEF] transition-colors">{hasRegistered ? <BookOpen size={20} /> : <Lock size={20} />} {CONTENT.hero.cta_secondary}</Button>
                 </div>
 
@@ -223,7 +233,7 @@ function App() {
 
             {/* Central Image Column */}
             <div className="order-first lg:order-none mb-12 lg:mb-0 flex flex-col justify-center h-full">
-              <div className="relative w-full aspect-[3/4] max-w-sm mx-auto">
+              <div className="relative w-full aspect-[3/4] max-w-sm mx-auto animate-breathe">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#EC008C] to-[#00AEEF] rounded-full blur-[80px] opacity-30 animate-pulse"></div>
                 <img
                   src="/connection-art.png"
