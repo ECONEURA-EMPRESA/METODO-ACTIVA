@@ -2,7 +2,7 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 import {
   BookOpen, Heart, Brain, Activity, ArrowRight, Menu, X,
   ShoppingCart, Star, Check, ShieldCheck, Truck, Users,
-  Loader2, MessageCircle, Send, Download, FileText, Music, Phone, Mail, Lock
+  Loader2, MessageCircle, Download, Music, Phone, Mail, Lock
 } from 'lucide-react';
 
 import Button from './components/ui/Button';

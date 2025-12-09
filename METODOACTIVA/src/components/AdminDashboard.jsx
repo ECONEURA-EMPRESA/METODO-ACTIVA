@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Lock, Users, MessageSquare, X, ShieldCheck, Download } from 'lucide-react';
-import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
+import { collection, query, orderBy, limit, getDocs, startAfter } from "firebase/firestore";
 import { db } from '../firebase';
 
 const AdminDashboard = ({ isOpen, onClose }) => {
@@ -9,6 +9,37 @@ const AdminDashboard = ({ isOpen, onClose }) => {
     const [data, setData] = useState({ leads: [], chats: [] });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+
+    const [lastLead, setLastLead] = useState(null);
+    const [lastChat, setLastChat] = useState(null);
+    const [hasMoreLeads, setHasMoreLeads] = useState(true);
+    const PAGE_SIZE = 20;
+
+    const fetchMoreLeads = async () => {
+        if (!lastLead || !hasMoreLeads) return;
+
+        try {
+            const leadsRef = collection(db, "leads");
+            const q = query(leadsRef, orderBy("timestamp", "desc"), startAfter(lastLead), limit(PAGE_SIZE));
+            const snap = await getDocs(q);
+
+            if (snap.empty) {
+                setHasMoreLeads(false);
+                return;
+            }
+
+            const newLeads = snap.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data(),
+                timestamp: doc.data().timestamp?.toDate().toISOString() || new Date().toISOString()
+            }));
+
+            setData(prev => ({ ...prev, leads: [...prev.leads, ...newLeads] }));
+            setLastLead(snap.docs[snap.docs.length - 1]);
+        } catch (err) {
+            console.error("Pagination error:", err);
+        }
+    };
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -25,8 +56,9 @@ const AdminDashboard = ({ isOpen, onClose }) => {
             const leadsRef = collection(db, "leads");
             const chatsRef = collection(db, "chat_logs");
 
-            const leadsQuery = query(leadsRef, orderBy("timestamp", "desc"), limit(50));
-            const chatsQuery = query(chatsRef, orderBy("timestamp", "desc"), limit(50));
+            // Initial Load
+            const leadsQuery = query(leadsRef, orderBy("timestamp", "desc"), limit(PAGE_SIZE));
+            const chatsQuery = query(chatsRef, orderBy("timestamp", "desc"), limit(PAGE_SIZE));
 
             const [leadsSnap, chatsSnap] = await Promise.all([
                 getDocs(leadsQuery),
@@ -46,6 +78,8 @@ const AdminDashboard = ({ isOpen, onClose }) => {
             }));
 
             setData({ leads: leadsData, chats: chatsData });
+            setLastLead(leadsSnap.docs[leadsSnap.docs.length - 1]);
+            setHasMoreLeads(!leadsSnap.empty && leadsSnap.docs.length === PAGE_SIZE);
             setIsAuthenticated(true);
             localStorage.setItem('admin_key', accessKey);
         } catch (err) {
@@ -163,6 +197,16 @@ const AdminDashboard = ({ isOpen, onClose }) => {
                                         </tbody>
                                     </table>
                                 </div>
+                                {hasMoreLeads && (
+                                    <div className="mt-4 text-center">
+                                        <button
+                                            onClick={fetchMoreLeads}
+                                            className="text-sm text-[#00AEEF] hover:text-[#008CCF] font-semibold transition-colors"
+                                        >
+                                            Cargar antiguos...
+                                        </button>
+                                    </div>
+                                )}
                             </div>
 
                             {/* CHATS SECTION */}
