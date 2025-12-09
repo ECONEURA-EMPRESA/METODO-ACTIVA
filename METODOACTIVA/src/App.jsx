@@ -203,6 +203,18 @@ function App() {
             <p className="text-gray-500 max-w-2xl mx-auto">{CONTENT.benefits.subtitle}</p>
           </div>
 
+          {/* Centered Connection Image */}
+          <div className="flex justify-center mb-16">
+            <div className="relative w-full max-w-lg">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#EC008C] to-[#00AEEF] rounded-full blur-[60px] opacity-20 animate-pulse"></div>
+              <img
+                src="/connection-art.png"
+                alt="Arte de Conexión"
+                className="relative z-10 w-full h-auto object-cover rounded-2xl shadow-2xl hover:scale-[1.02] transition-transform duration-500"
+              />
+            </div>
+          </div>
+
           {/* Seniors Section */}
           <div className="mb-20">
             <div className="flex items-center gap-4 mb-8 justify-center">
