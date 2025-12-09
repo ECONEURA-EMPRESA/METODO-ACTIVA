@@ -19,10 +19,11 @@ export const CONTENT = {
             highlight2: "ELLOS"
         },
         title: {
-            part1: "DESCUBRE",
-            gradient1: "EL ARTE",
-            gradient2: "DE",
-            gradient3: "CONECTAR"
+            part1: "ACTIVA TU",
+            gradient1: "CUERPO",
+            gradient2: "MENTE",
+            gradient3: "CORAZÓN",
+            suffix: "CON ARTE"
         },
         description: "Cuando las palabras se apagan, la música enciende el vínculo. El **Método Activa** es un manual de 21 sesiones prácticas para dominar **el arte de conectar**: calma tu propio ruido mental, disuelve la soledad de tus **mayores** y entra en el mundo de tus **niños**. La medicina es el vínculo.",
         cta_primary: "Ver Libro en Amazon",
