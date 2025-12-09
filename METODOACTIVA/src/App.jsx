@@ -125,9 +125,29 @@ function App() {
                   <Button onClick={openAmazon} className="text-lg px-10 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all animate-pulse-ring" variant="amazon">Comprar en Amazon</Button>
                   <Button variant="secondary" onClick={handleAccessRequest} className="hover:border-[#00AEEF] transition-colors">{hasRegistered ? <BookOpen size={20} /> : <Lock size={20} />} Leer primer capítulo</Button>
                 </div>
-                <div className="mt-8 flex items-center justify-center lg:justify-start gap-6 text-sm text-gray-500">
-                  <div className="flex items-center gap-1"><Star size={18} className="text-[#FF9900] fill-[#FF9900]" /><span className="font-bold text-gray-900">4.9/5</span><span className="text-gray-400">(+500 valoraciones)</span></div>
-                  <div className="flex items-center gap-1"><Truck size={18} className="text-gray-400" /><span className="text-gray-600">Envío <strong>RÁPIDO</strong> y <strong>GRATIS</strong> con Prime</span></div>
+
+                {/* Enhanced Social Proof */}
+                <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-sm">
+                  <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-gray-100">
+                    <Star size={18} className="text-[#FF9900] fill-[#FF9900]" />
+                    <span className="font-bold text-gray-900">4.9/5</span>
+                    <span className="text-gray-400">(+500 valoraciones)</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-gray-100">
+                    <Users size={18} className="text-[#00AEEF]" />
+                    <span className="text-gray-600"><strong className="text-gray-900">2,847</strong> lectores este mes</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-green-50 px-4 py-2 rounded-full border border-green-200">
+                    <Truck size={18} className="text-green-600" />
+                    <span className="text-green-700 font-medium">Envío GRATIS con Prime</span>
+                  </div>
+                </div>
+
+                {/* Urgency Banner */}
+                <div className="mt-4 flex items-center justify-center lg:justify-start gap-2 text-sm">
+                  <span className="inline-flex items-center gap-1 bg-red-50 text-red-600 px-3 py-1 rounded-full font-bold text-xs animate-pulse">
+                    🔥 OFERTA LIMITADA: -20% solo hoy
+                  </span>
                 </div>
                 <div className="mt-4 flex items-center justify-center lg:justify-start gap-4 text-xs text-gray-400">
                   <div className="flex items-center gap-1"><ShieldCheck size={14} /> Pago Seguro</div>
@@ -157,7 +177,7 @@ function App() {
             </div>
           </div>
         </div>
-      </div>
+      </div >
 
       <Section id="beneficios" className="bg-white">
         <div className="container mx-auto px-6">
@@ -345,18 +365,20 @@ function App() {
       <AdminDashboard isOpen={isAdminOpen} onClose={() => setIsAdminOpen(false)} />
 
       {/* Scroll to Top Button */}
-      {scrolled && (
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          aria-label="Volver arriba"
-          className="fixed bottom-24 right-6 z-40 p-3 bg-white border border-gray-200 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
-        >
-          <svg className="w-5 h-5 text-gray-600 group-hover:text-[#EC008C] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-          </svg>
-        </button>
-      )}
-    </div>
+      {
+        scrolled && (
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            aria-label="Volver arriba"
+            className="fixed bottom-24 right-6 z-40 p-3 bg-white border border-gray-200 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
+          >
+            <svg className="w-5 h-5 text-gray-600 group-hover:text-[#EC008C] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+            </svg>
+          </button>
+        )
+      }
+    </div >
   );
 }
 
