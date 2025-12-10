@@ -114,11 +114,11 @@ function App() {
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-white pt-20 px-6 space-y-4 md:hidden">
-          <button onClick={() => scrollTo('autor')} className="block w-full text-left py-3 text-lg border-b border-gray-100">{CONTENT.navbar.links.about}</button>
-          <button onClick={() => scrollTo('recursos')} className="block w-full text-left py-3 text-lg border-b border-gray-100">{CONTENT.navbar.links.resources}</button>
-          <button onClick={() => scrollTo('chat')} className="block w-full text-left py-3 text-lg border-b border-gray-100">{CONTENT.navbar.links.support}</button>
-          <button onClick={openAmazon} className="block w-full text-center bg-[#FF9900] text-white py-3 rounded-lg font-bold mt-4">{CONTENT.navbar.cta}</button>
+        <div className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl pt-24 px-6 space-y-6 md:hidden animate-in slide-in-from-right duration-300">
+          <button onClick={() => scrollTo('autor')} className="block w-full text-left py-4 text-xl font-bold border-b border-gray-100 text-gray-800 hover:text-[#EC008C] transition-colors">{CONTENT.navbar.links.about}</button>
+          <button onClick={() => scrollTo('recursos')} className="block w-full text-left py-4 text-xl font-bold border-b border-gray-100 text-gray-800 hover:text-[#00AEEF] transition-colors">{CONTENT.navbar.links.resources}</button>
+          <button onClick={() => scrollTo('chat')} className="block w-full text-left py-4 text-xl font-bold border-b border-gray-100 text-gray-800 hover:text-[#F7941D] transition-colors">{CONTENT.navbar.links.support}</button>
+          <button onClick={openAmazon} className="block w-full text-center bg-gradient-to-r from-[#FF9900] to-[#FFB800] text-white py-4 rounded-xl font-black text-lg shadow-lg mt-8 active:scale-95 transition-transform">{CONTENT.navbar.cta}</button>
         </div>
       )}
 
