@@ -68,7 +68,11 @@ const ArtGallery = () => {
                                                             src={item.src}
                                                             alt={`Obra de arte: ${item.title} por ${item.artist}`}
                                                             loading="lazy"
-                                                            className="w-full aspect-square object-cover transition-transform duration-1000 group-hover:scale-110"
+                                                            decoding="async"
+                                                            onLoad={(e) => {
+                                                                e.target.style.opacity = '1';
+                                                            }}
+                                                            className="w-full aspect-square object-cover transition-all duration-1000 group-hover:scale-110 opacity-0"
                                                         />
 
                                                         {/* Hover overlay */}

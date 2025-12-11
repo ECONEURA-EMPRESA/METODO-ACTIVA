@@ -14,9 +14,9 @@ import { CONTENT } from './constants/content';
 
 // Lazy Load Heavy Components
 const BookReader = lazy(() => import('./components/book/BookReader'));
-const CustomerSupportChat = lazy(() => import('./components/chat/CustomerSupportChat'));
 const AdminDashboard = lazy(() => import('./components/AdminDashboard'));
 const ArtGallery = lazy(() => import('./components/gallery/ArtGallery'));
+import CustomerSupportChat from './components/chat/CustomerSupportChat';
 
 // Loading Fallback
 const LoadingSpinner = () => (
@@ -26,8 +26,10 @@ const LoadingSpinner = () => (
 );
 
 function App() {
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const openChat = () => setIsChatOpen(true);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showLeadModal, setShowLeadModal] = useState(false);
   const [showContentModal, setShowContentModal] = useState(false);
@@ -66,6 +68,31 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // PWA Install Prompt Logic
+  useEffect(() => {
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const installContainer = document.getElementById('pwa-install-container');
+      const installBtn = document.getElementById('pwa-install-btn');
+
+      if (installContainer && installBtn) {
+        installContainer.classList.remove('hidden');
+        installBtn.addEventListener('click', () => {
+          installContainer.classList.add('hidden');
+          deferredPrompt.prompt();
+          deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+              console.log('User accepted the install prompt');
+            }
+            deferredPrompt = null;
+          });
+        });
+      }
+    });
+  }, [isMenuOpen]);
+
   const scrollTo = (id) => {
     setIsMenuOpen(false);
     const element = document.getElementById(id);
@@ -78,7 +105,11 @@ function App() {
   const handleLeadSuccess = () => { setHasRegistered(true); setShowLeadModal(false); setShowContentModal(true); };
 
   return (
-    <div className="font-sans text-gray-900 bg-gray-50 overflow-x-hidden selection:bg-[#2DD6F5] selection:text-[#B5006C]">
+    <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-[#EC008C] selection:text-white pb-20 md:pb-0">
+
+      {/* Floating Sales Assistant */}
+      <CustomerSupportChat isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+
       {/* Scroll Progress Bar */}
       <div className="fixed top-0 left-0 w-full h-1 z-[60] bg-gray-200/50">
         <div
@@ -104,7 +135,7 @@ function App() {
           <div className="hidden md:flex items-center gap-8 font-medium text-gray-600 text-sm">
             <button onClick={() => scrollTo('autor')} className="hover:text-[#EC008C] transition-colors">{CONTENT.navbar.links.about}</button>
             <button onClick={() => scrollTo('recursos')} className="hover:text-[#00AEEF] transition-colors flex items-center gap-1"><Brain size={16} /> {CONTENT.navbar.links.resources}</button>
-            <button onClick={() => scrollTo('chat')} className="hover:text-[#F7941D] transition-colors flex items-center gap-1 text-gray-600 font-bold"><MessageCircle size={14} /> {CONTENT.navbar.links.support}</button>
+            <button onClick={openChat} className="hover:text-[#F7941D] transition-colors flex items-center gap-1 text-gray-600 font-bold"><MessageCircle size={14} /> {CONTENT.navbar.links.support}</button>
             <button onClick={() => scrollTo('reviews')} className="hover:text-[#B5006C] transition-colors">{CONTENT.navbar.links.reviews}</button>
             <button onClick={openAmazon} className="bg-[#FF9900] hover:bg-[#ffad33] text-white px-6 py-2 rounded-md font-bold text-sm flex items-center gap-2 shadow-sm transition-colors"><ShoppingCart size={16} /> {CONTENT.navbar.cta}</button>
           </div>
@@ -117,8 +148,16 @@ function App() {
         <div className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl pt-24 px-6 space-y-6 md:hidden animate-in slide-in-from-right duration-300">
           <button onClick={() => scrollTo('autor')} className="block w-full text-left py-4 text-xl font-bold border-b border-gray-100 text-gray-800 hover:text-[#EC008C] transition-colors">{CONTENT.navbar.links.about}</button>
           <button onClick={() => scrollTo('recursos')} className="block w-full text-left py-4 text-xl font-bold border-b border-gray-100 text-gray-800 hover:text-[#00AEEF] transition-colors">{CONTENT.navbar.links.resources}</button>
-          <button onClick={() => scrollTo('chat')} className="block w-full text-left py-4 text-xl font-bold border-b border-gray-100 text-gray-800 hover:text-[#F7941D] transition-colors">{CONTENT.navbar.links.support}</button>
-          <button onClick={openAmazon} className="block w-full text-center bg-gradient-to-r from-[#FF9900] to-[#FFB800] text-white py-4 rounded-xl font-black text-lg shadow-lg mt-8 active:scale-95 transition-transform">{CONTENT.navbar.cta}</button>
+          <button onClick={() => { setIsMenuOpen(false); openChat(); }} className="block w-full text-left py-4 text-xl font-bold border-b border-gray-100 text-gray-800 hover:text-[#F7941D] transition-colors">{CONTENT.navbar.links.support}</button>
+
+          {/* Install App Button (PWA) */}
+          <div id="pwa-install-container" className="hidden">
+            <button id="pwa-install-btn" className="block w-full text-center bg-gray-100 text-gray-600 py-3 rounded-xl font-bold text-sm mb-2 hover:bg-gray-200 transition-colors">
+              📲 Instalar App
+            </button>
+          </div>
+
+          <button onClick={openAmazon} className="block w-full text-center bg-gradient-to-r from-[#FF9900] to-[#FFB800] text-white py-4 rounded-xl font-black text-lg shadow-lg mt-4 active:scale-95 transition-transform">{CONTENT.navbar.cta}</button>
         </div>
       )}
 
@@ -296,23 +335,8 @@ function App() {
         <ArtGallery />
       </Suspense>
 
-      <Section id="chat" className="bg-white">
-        <div className="container mx-auto px-6 text-center">
-          <div className="mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">ESTAMOS PARA AYUDARTE A CONSEGUIR TU LIBRO</h2>
-            <div className="text-gray-500 max-w-2xl mx-auto flex flex-col items-center justify-center gap-4">
-              <span>Habla con nuestro agente que responderá tus dudas.</span>
-              <div className="flex flex-col gap-3 items-center">
-                <span className="flex items-center gap-2">Si quieres podemos hablar al teléfono: <span className="font-bold text-[#00AEEF] flex items-center gap-1 whitespace-nowrap"><Phone size={18} /> 643 882 154</span></span>
-                <span className="flex items-center gap-2">o escríbenos a: <span className="font-bold text-[#B5006C] flex items-center gap-1 whitespace-nowrap"><Mail size={18} /> info@metodoactiva.es</span></span>
-              </div>
-            </div>
-          </div>
-          <Suspense fallback={<div className="h-[600px] flex items-center justify-center bg-white rounded-2xl shadow-xl border border-gray-100"><Loader2 className="w-8 h-8 text-[#EC008C] animate-spin" /></div>}>
-            <CustomerSupportChat />
-          </Suspense>
-        </div>
-      </Section>
+
+
 
       <Section id="reviews" className="bg-gray-50">
         <div className="container mx-auto px-6">

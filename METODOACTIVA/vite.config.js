@@ -10,7 +10,7 @@ export default defineConfig({
         manualChunks: {
           'vendor-react': ['react', 'react-dom'],
           'vendor-firebase': ['firebase/app', 'firebase/firestore', 'firebase/analytics'],
-          'vendor-ui': ['lucide-react'],
+          'vendor-ui': ['lucide-react', 'sonner'],
         }
       }
     }

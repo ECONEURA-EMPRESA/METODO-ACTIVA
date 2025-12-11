@@ -232,7 +232,7 @@ const BookReader = ({ onClose, onBuy }) => {
                 onMouseLeave={handleMouseLeave}
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
-                className="book-stage relative w-full max-w-5xl aspect-[1.6/1] flex items-center justify-center perspective-[2500px] transition-transform duration-300 ease-out"
+                className="book-stage relative w-full md:max-w-5xl md:aspect-[1.6/1] max-w-sm aspect-[3/4.5] flex items-center justify-center perspective-[2500px] transition-transform duration-300 ease-out"
                 style={{
                     transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
                     transformStyle: 'preserve-3d'
@@ -255,7 +255,7 @@ const BookReader = ({ onClose, onBuy }) => {
                     </div>
 
                     {/* Right Page (Active) */}
-                    <div className="relative w-full md:w-1/2 h-full bg-white rounded-r-lg overflow-hidden transform-style-3d origin-left">
+                    <div className="relative w-full md:w-1/2 h-full bg-white rounded-r-lg md:rounded-l-none rounded-l-lg overflow-hidden transform-style-3d origin-left">
                         {/* Page Content */}
                         <div className={`w-full h-full transition-opacity duration-300 ${isFlipping ? 'opacity-0' : 'opacity-100'}`}>
                             <PageContent index={page} />
@@ -289,7 +289,7 @@ const BookReader = ({ onClose, onBuy }) => {
                 </div>
 
                 {/* Floating Controls */}
-                <div className="absolute -bottom-24 left-0 w-full flex justify-center gap-12 items-center z-50 pointer-events-none">
+                <div className="absolute -bottom-24 md:-bottom-24 -bottom-20 left-0 w-full flex justify-center gap-8 md:gap-12 items-center z-50 pointer-events-none">
                     <button
                         onClick={handlePrev}
                         disabled={page === 0}
