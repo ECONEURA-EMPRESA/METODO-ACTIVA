@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-// ⚠️ API Key expuesta en frontend por urgencia (Provided by User - Validated)
-const API_KEY = "AIzaSyB4ArnBgEpFK1eCfhM--8OoCyyG-ocWGjY";
+// ⚠️ API Key gestionada via variables de entorno (Security Best Practice)
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
 const genAI = new GoogleGenerativeAI(API_KEY);
 // Usamos el modelo más rápido y disponible 
