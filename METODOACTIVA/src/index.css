@@ -478,3 +478,18 @@ html {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
 }
+
+/* 8. Letter Reveal Animation */
+.animate-reveal-text span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: revealLetter 0.5s cubic-bezier(0.5, 0, 0, 1) forwards;
+}
+
+@keyframes revealLetter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

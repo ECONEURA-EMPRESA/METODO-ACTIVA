@@ -50,24 +50,24 @@ export const CONTENT = {
             {
                 category: "heart", // Color cálido (Rosa/Rojo)
                 icon: Anchor, // Icono de Ancla
-                title: "1. Conectar Contigo (Tu Calma)",
-                desc: "No puedes sostener a nadie si tú te caes. Usa frecuencias sonoras para regular tu sistema nervioso, silenciar la culpa y recuperar la energía para cuidar desde el amor, no desde el agotamiento."
+                title: "Conexión Emocional (El Vínculo)",
+                desc: "Vence la soledad. Usa frecuencias sonoras para restaurar el lazo afectivo, silenciar la culpa y recuperar la capacidad de cuidar desde el amor, no desde el agotamiento."
             },
 
             // --- NIVEL 2: CONEXIÓN VITAL (MAYORES) ---
             {
                 category: "body", // Color vital (Naranja)
                 icon: Sun, // Icono de Sol/Vida
-                title: "2. Conectar con su Historia",
-                desc: "La soledad del anciano duele. La música es la llave maestra de la memoria: reactiva su identidad, despierta recuerdos dormidos y os regala momentos de lucidez compartida."
+                title: "Conexión Vital (Energía)",
+                desc: "Reactiva la vida. La música actúa como un desfibrilador para el ánimo: inyecta energía al anciano apático y regula el ritmo del niño inquieto. Es pura física."
             },
 
             // --- NIVEL 3: CONEXIÓN EMOCIONAL (NIÑOS) ---
             {
                 category: "mind", // Color mental/calma (Azul/Violeta)
                 icon: Infinity, // Icono de Infinito (Neurodivergencia/Vínculo eterno)
-                title: "3. Conectar con su Mundo",
-                desc: "Si no pueden venir a tu mundo, ve tú al suyo. Usa el juego sonoro para cruzar la barrera del TDAH o el autismo, transformando las crisis en un lenguaje de confianza y risa."
+                title: "Conexión Cognitiva (Memoria/Foco)",
+                desc: "Despierta la mente. Usa el estímulo sonoro preciso para recuperar recuerdos en Alzheimer ('Memoria Musical') o centrar la atención dispersa en TDAH ('Foco Rítmico')."
             },
 
             // --- EL RESULTADO: PRESENCIA ---

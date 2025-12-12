@@ -1,13 +1,17 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import {
-  BookOpen, Heart, Brain, Activity, ArrowRight, Menu, X,
+  BookOpen, Heart, Activity, ArrowRight, X,
   ShoppingCart, Star, Check, ShieldCheck, Truck, Users,
-  Loader2, MessageCircle, Download, Music, Phone, Mail, Lock
+  Loader2, MessageCircle, Download, Music, Phone, Mail, Lock,
+  Instagram, Facebook, Youtube
 } from 'lucide-react';
 
 import Button from './components/ui/Button';
 import Section from './components/ui/Section';
 import FadeIn from './components/ui/FadeIn';
+import Navbar from './components/layout/Navbar';
+import MobileMenu from './components/layout/MobileMenu';
+import AuroraCursor from './components/ui/AuroraCursor';
 import { LeadMagnetModal, BenefitRow, AmazonReviewCard } from './components/ui/Cards';
 import { IMAGES } from './constants/images';
 import { CONTENT } from './constants/content';
@@ -68,30 +72,6 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // PWA Install Prompt Logic
-  useEffect(() => {
-    let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      const installContainer = document.getElementById('pwa-install-container');
-      const installBtn = document.getElementById('pwa-install-btn');
-
-      if (installContainer && installBtn) {
-        installContainer.classList.remove('hidden');
-        installBtn.addEventListener('click', () => {
-          installContainer.classList.add('hidden');
-          deferredPrompt.prompt();
-          deferredPrompt.userChoice.then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-              console.log('User accepted the install prompt');
-            }
-            deferredPrompt = null;
-          });
-        });
-      }
-    });
-  }, [isMenuOpen]);
 
   const scrollTo = (id) => {
     setIsMenuOpen(false);
@@ -118,48 +98,22 @@ function App() {
         />
       </div>
 
-      <nav className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'glass-ultra py-3' : 'bg-white/90 backdrop-blur-sm py-4'}`}>
-        <div className="container mx-auto px-6 flex justify-between items-center">
-          <div className="flex items-center gap-3 cursor-pointer group" onClick={() => scrollTo('hero')}>
-            <div className="relative isolate">
-              <div className="absolute -inset-0.5 rounded-full bg-gradient-to-tr from-[#EC008C] via-[#00AEEF] to-[#F7941D] blur-[3px] opacity-80 animate-pulse"></div>
-              <div className="relative">
-                <img src="/logo.jpg" alt="Método Activa Logo" className="relative w-10 h-10 rounded-full object-cover shadow-[0_2px_8px_rgba(0,0,0,0.2)] ring-1 ring-white/80 ring-offset-0 ring-offset-transparent transition-transform duration-500 hover:rotate-6 hover:scale-105" width="40" height="40" />
-                <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-white/40 pointer-events-none"></div>
-              </div>
-            </div>
-            <span className="text-lg font-black tracking-tight text-gray-900 drop-shadow-sm group-hover:bg-gradient-to-r group-hover:from-[#EC008C] group-hover:to-[#00AEEF] group-hover:bg-clip-text group-hover:text-transparent transition-all">
-              MÉTODO ACTIVA
-            </span>
-          </div>
-          <div className="hidden md:flex items-center gap-8 font-medium text-gray-600 text-sm">
-            <button onClick={() => scrollTo('autor')} className="hover:text-[#EC008C] transition-colors">{CONTENT.navbar.links.about}</button>
-            <button onClick={() => scrollTo('recursos')} className="hover:text-[#00AEEF] transition-colors flex items-center gap-1"><Brain size={16} /> {CONTENT.navbar.links.resources}</button>
-            <button onClick={openChat} className="hover:text-[#F7941D] transition-colors flex items-center gap-1 text-gray-600 font-bold"><MessageCircle size={14} /> {CONTENT.navbar.links.support}</button>
-            <button onClick={() => scrollTo('reviews')} className="hover:text-[#B5006C] transition-colors">{CONTENT.navbar.links.reviews}</button>
-            <button onClick={openAmazon} className="bg-[#FF9900] hover:bg-[#ffad33] text-white px-6 py-2 rounded-md font-bold text-sm flex items-center gap-2 shadow-sm transition-colors"><ShoppingCart size={16} /> {CONTENT.navbar.cta}</button>
-          </div>
-          <button className="md:hidden text-gray-800 p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}><Menu /></button>
-        </div>
-      </nav>
+      <AuroraCursor />
+      <Navbar
+        scrolled={scrolled}
+        scrollTo={scrollTo}
+        openChat={openChat}
+        openAmazon={openAmazon}
+        toggleMenu={() => setIsMenuOpen(!isMenuOpen)}
+      />
 
-      {/* Mobile Menu Overlay */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl pt-24 px-6 space-y-6 md:hidden animate-in slide-in-from-right duration-300">
-          <button onClick={() => scrollTo('autor')} className="block w-full text-left py-4 text-xl font-bold border-b border-gray-100 text-gray-800 hover:text-[#EC008C] transition-colors">{CONTENT.navbar.links.about}</button>
-          <button onClick={() => scrollTo('recursos')} className="block w-full text-left py-4 text-xl font-bold border-b border-gray-100 text-gray-800 hover:text-[#00AEEF] transition-colors">{CONTENT.navbar.links.resources}</button>
-          <button onClick={() => { setIsMenuOpen(false); openChat(); }} className="block w-full text-left py-4 text-xl font-bold border-b border-gray-100 text-gray-800 hover:text-[#F7941D] transition-colors">{CONTENT.navbar.links.support}</button>
-
-          {/* Install App Button (PWA) */}
-          <div id="pwa-install-container" className="hidden">
-            <button id="pwa-install-btn" className="block w-full text-center bg-gray-100 text-gray-600 py-3 rounded-xl font-bold text-sm mb-2 hover:bg-gray-200 transition-colors">
-              📲 Instalar App
-            </button>
-          </div>
-
-          <button onClick={openAmazon} className="block w-full text-center bg-gradient-to-r from-[#FF9900] to-[#FFB800] text-white py-4 rounded-xl font-black text-lg shadow-lg mt-4 active:scale-95 transition-transform">{CONTENT.navbar.cta}</button>
-        </div>
-      )}
+      <MobileMenu
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        scrollTo={scrollTo}
+        openChat={openChat}
+        openAmazon={openAmazon}
+      />
 
       <div id="hero" className="relative pt-12 pb-20 bg-white overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#EC008C] rounded-full blur-[180px] opacity-10 pointer-events-none"></div>
@@ -390,17 +344,17 @@ function App() {
           {/* Social Media Icons with NEW Animation and Styles */}
           <div className="flex justify-center gap-6 mb-8">
             <a href="https://instagram.com/metodoactiva" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-gradient-to-br from-[#F58529] via-[#DD2A7B] to-[#8134AF] flex items-center justify-center hover:scale-110 transition-transform shadow-lg group" aria-label="Instagram">
-              <svg className="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+              <Instagram className="text-white group-hover:scale-110 transition-transform" size={24} />
             </a>
             <a href="https://facebook.com/metodoactiva" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-[#1877F2] flex items-center justify-center hover:scale-110 transition-transform shadow-lg" aria-label="Facebook">
-              <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.791-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+              <Facebook className="text-white" size={24} />
             </a>
             {/* WhatsApp with Wiggle Animation */}
             <a href="https://wa.me/34643882154" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-[#25D366] flex items-center justify-center hover:scale-110 transition-transform shadow-lg animate-[wiggle_4s_ease-in-out_infinite]" aria-label="WhatsApp">
               <Phone className="text-white" size={24} />
             </a>
             <a href="https://youtube.com/@metodoactiva" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-[#FF0000] flex items-center justify-center hover:scale-110 transition-transform shadow-lg" aria-label="YouTube">
-              <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
+              <Youtube className="text-white" size={24} />
             </a>
           </div>
 

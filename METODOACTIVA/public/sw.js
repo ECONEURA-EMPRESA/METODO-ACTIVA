@@ -1,21 +1,24 @@
-const CACHE_NAME = 'metodo-activa-v1';
-const urlsToCache = [
-    '/',
-    '/index.html',
-    '/manifest.json',
-    '/logo.jpg'
-];
+// SELF-DESTRUCT SERVICE WORKER (KILL SWITCH)
+// This script unregisters itself to remove PWA functionality and clear the cache loop.
 
-self.addEventListener('install', event => {
+self.addEventListener('install', (event) => {
+    self.skipWaiting();
+});
+
+self.addEventListener('activate', (event) => {
     event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(cache => cache.addAll(urlsToCache))
+        self.registration.unregister()
+            .then(() => {
+                console.log('Service Worker: Self-Destruct Successful. Unregistered.');
+                return self.clients.matchAll();
+            })
+            .then((clients) => {
+                clients.forEach(client => client.navigate(client.url)); // Force reload page to clear memory
+            })
     );
 });
 
-self.addEventListener('fetch', event => {
-    event.respondWith(
-        caches.match(event.request)
-            .then(response => response || fetch(event.request))
-    );
+self.addEventListener('fetch', (event) => {
+    // Pass through everything while dying
+    event.respondWith(fetch(event.request));
 });
