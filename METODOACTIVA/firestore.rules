@@ -2,9 +2,14 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /leads/{leadId} {
-      // Allow creation of leads by anyone (public form)
-      allow create: if true;
-      // Only allow read/update/delete by authenticated admins (future)
+      // 🛡️ SECURITY HARDENING: Prevent garbage data.
+      // Allow creation ONLY if the data has the expected structure.
+      allow create: if request.resource.data.keys().hasAll(['name', 'email', 'phone']) 
+                    && request.resource.data.size() < 10
+                    && request.resource.data.name is string
+                    && request.resource.data.email is string;
+      
+      // Deny all other access to prevent leaking user data
       allow read, update, delete: if false;
     }
   }

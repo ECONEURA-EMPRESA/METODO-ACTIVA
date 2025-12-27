@@ -1,0 +1,127 @@
+/* --- KEYFRAMES DEFINITIONS --- */
+@keyframes coinSpin {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+@keyframes coinFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes systemFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotateZ(0deg);
+    }
+
+    50% {
+        transform: translateY(-5px) rotateZ(2deg);
+    }
+}
+
+@keyframes shineMove {
+    0% {
+        transform: translateX(-150%) skewX(-25deg);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(150%) skewX(-25deg);
+        opacity: 0;
+    }
+}
+
+@keyframes shadowPulse {
+
+    0%,
+    100% {
+        transform: rotateX(80deg) scale(1);
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: rotateX(80deg) scale(0.6);
+        opacity: 0.1;
+    }
+}
+
+@keyframes spinRing1 {
+    from {
+        transform: rotateX(60deg) rotateY(10deg) rotateZ(0deg);
+    }
+
+    to {
+        transform: rotateX(60deg) rotateY(10deg) rotateZ(360deg);
+    }
+}
+
+@keyframes spinRing2 {
+    from {
+        transform: rotateX(45deg) rotateY(-10deg) rotateZ(0deg);
+    }
+
+    to {
+        transform: rotateX(45deg) rotateY(-10deg) rotateZ(360deg);
+    }
+}
+
+@keyframes spinRing3 {
+    from {
+        transform: rotateX(70deg) rotateZ(0deg);
+    }
+
+    to {
+        transform: rotateX(70deg) rotateZ(360deg);
+    }
+}
+
+@keyframes pulseText {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-100px) translateX(var(--move-x));
+        opacity: 0;
+    }
+}
+
+.logo-coin-wrapper {
+    transform-style: preserve-3d;
+    animation: coinSpin 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}

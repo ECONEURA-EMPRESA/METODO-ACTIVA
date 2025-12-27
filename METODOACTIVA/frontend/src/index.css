@@ -1,0 +1,549 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Screen Reader Only (Accessibility) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+@layer base {
+  body {
+    @apply antialiased text-gray-900 bg-white;
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+    /* Static premium background - No animation, No noise */
+    background-image:
+      radial-gradient(at 0% 0%, rgba(236, 0, 140, 0.05) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(0, 174, 239, 0.05) 0px, transparent 50%);
+    background-attachment: scroll;
+    /* Fixed is performance heavy on mobile */
+
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Outfit', sans-serif;
+    /* DISPLAY FONT */
+    @apply text-gray-900 drop-shadow-sm tracking-tight;
+  }
+}
+
+/* GLOBAL 3D & PREMIUM EFFECTS */
+
+/* 1. Glassmorphism Ultra-Premium (Optimized) */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  /* Reduced from 16px */
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+/* 2. 3D Floating Animation */
+@keyframes float-3d {
+  0% {
+    transform: translateY(0px) rotateX(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotateX(2deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotateX(0deg);
+  }
+}
+
+.animate-float {
+  animation: float-3d 6s ease-in-out infinite;
+}
+
+/* 3. Deep 3D Card Hover */
+.depth-card {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.depth-card:hover {
+  transform: translateY(-8px) scale(1.02) rotateX(2deg);
+  box-shadow:
+    0 20px 40px -5px rgba(0, 0, 0, 0.1),
+    0 10px 20px -5px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+}
+
+/* 4. Text Gradients & Effects */
+.text-gradient-premium {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#EC008C] via-[#B5006C] to-[#EC008C];
+  background-size: 200% auto;
+  animation: textShine 4s linear infinite;
+}
+
+@keyframes textShine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* 5. Book Reader Specifics */
+.book-stage {
+  perspective: 2000px;
+}
+
+.flipping-page {
+  transform-origin: left center;
+  z-index: 50;
+  backface-visibility: hidden;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.page-sheen {
+  background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+  animation: sheenMove 0.8s linear forwards;
+}
+
+/* Utilities */
+@layer utilities {
+  .hover-lift {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .hover-lift:hover {
+    @apply -translate-y-1 shadow-xl;
+  }
+
+  .glass-effect {
+    @apply bg-white/80 backdrop-blur-xl border border-white/20;
+  }
+
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+}
+
+/* ========== PREMIUM UX ANIMATIONS ========== */
+
+/* Smooth scroll for entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* WhatsApp Wiggle Animation */
+@keyframes wiggle {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-8deg) scale(1.1);
+  }
+
+  50% {
+    transform: rotate(8deg) scale(1.1);
+  }
+
+  75% {
+    transform: rotate(-4deg);
+  }
+}
+
+.animate-wiggle {
+  animation: wiggle 0.6s ease-in-out;
+  animation-iteration-count: 1;
+}
+
+/* Cookie Banner Slide Up */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.4s ease-out forwards;
+}
+
+/* Typing Dots Animation */
+@keyframes typingDot {
+
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+.typing-dot {
+  animation: typingDot 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Section Fade In on Scroll */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-section {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Social Icon Hover Colors */
+.social-instagram:hover {
+  color: #E4405F !important;
+}
+
+.social-facebook:hover {
+  color: #1877F2 !important;
+}
+
+.social-twitter:hover {
+  color: #1DA1F2 !important;
+}
+
+.social-linkedin:hover {
+  color: #0A66C2 !important;
+}
+
+.social-youtube:hover {
+  color: #FF0000 !important;
+}
+
+/* Gradient Button Shine */
+@keyframes buttonShine {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.btn-shine {
+  background-size: 200% auto;
+  animation: buttonShine 3s linear infinite;
+}
+
+/* Pulse Animation for CTA */
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 153, 0, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 15px rgba(255, 153, 0, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 153, 0, 0);
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Star Fill Animation */
+@keyframes starFill {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.animate-star-fill {
+  animation: starFill 0.5s ease-out forwards;
+}
+
+/* Premium Card Glow on Hover */
+.glow-card:hover {
+  box-shadow:
+    0 0 20px rgba(236, 0, 140, 0.15),
+    0 0 40px rgba(0, 174, 239, 0.1),
+    0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Parallax Effect Helper */
+.parallax-slow {
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+/* =========================================
+   10X UX/UI POLISH - PREMIUM ADDITIONS
+   ========================================= */
+
+/* 1. Custom Scrollbar Brand Themed */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #EC008C, #00AEEF);
+  border-radius: 6px;
+  border: 3px solid #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #d6007b, #0090c5);
+}
+
+/* 2. Custom Selection Color */
+::selection {
+  background: rgba(236, 0, 140, 0.2);
+  color: #EC008C;
+}
+
+/* 3. Floating Particles Animation */
+@keyframes floatParticle {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.6;
+  }
+
+  90% {
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.animate-float-particle {
+  animation: floatParticle 8s linear infinite;
+}
+
+/* 4. Heartbeat CTA */
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+
+  14% {
+    transform: scale(1.05);
+  }
+
+  28% {
+    transform: scale(1);
+  }
+
+  42% {
+    transform: scale(1.05);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 3s infinite ease-in-out;
+}
+
+/* 5. Breathing Image Glow */
+@keyframes breatheGlow {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 15px rgba(236, 0, 140, 0.3));
+    transform: scale(1);
+  }
+
+  50% {
+    filter: drop-shadow(0 0 30px rgba(0, 174, 239, 0.5));
+    transform: scale(1.02);
+  }
+}
+
+.animate-breathe {
+  animation: breatheGlow 4s ease-in-out infinite;
+}
+
+/* 6. Text Gradient Shimmer (Premium) */
+.text-shimmer {
+  background: linear-gradient(to right, #EC008C 20%, #00AEEF 40%, #00AEEF 60%, #EC008C 80%);
+  background-size: 200% auto;
+  color: #000;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* 6b. Brand Specific Text Shimmers */
+.shimmer-yellow {
+  background: linear-gradient(to right, #FFD200 0%, #F7941D 50%, #FFD200 100%);
+  background-size: 200% auto;
+  color: #000;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+.shimmer-blue {
+  background: linear-gradient(to right, #2DD6F5 0%, #00AEEF 50%, #2DD6F5 100%);
+  background-size: 200% auto;
+  color: #000;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+.shimmer-pink {
+  background: linear-gradient(to right, #EC008C 0%, #B5006C 50%, #EC008C 100%);
+  background-size: 200% auto;
+  color: #000;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* 7. Glassmorphism 2.0 (Ultra Clear) */
+.glass-ultra {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+/* 8. Letter Reveal Animation */
+.animate-reveal-text span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: revealLetter 0.5s cubic-bezier(0.5, 0, 0, 1) forwards;
+}
+
+@keyframes revealLetter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- NEW PREMIUM ADDITIONS FOR FLUIDITY & DEPTH --- */
+/* Fluid Parametric Separators Removed */
+
+/* 2. Advanced Mesh Gradient (Fluid Background) */
+/* 2. Advanced Mesh Gradient (Fluid Background 2.0) */
+.bg-mesh-premium {
+  background-color: #f8fafc;
+  background-image:
+    radial-gradient(at 0% 0%, rgba(236, 0, 140, 0.10) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(0, 174, 239, 0.10) 0px, transparent 50%);
+  /* Animation removed for speed */
+}
+
+/* 3. Deep Glass Cards */
+.card-premium-3d {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 10px 40px -10px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-premium-3d:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow:
+    0 20px 50px -12px rgba(0, 0, 0, 0.1),
+    0 0 0 2px rgba(236, 0, 140, 0.1) inset;
+  /* Brand pink subtle highlight */
+}
+
+/* 4. Section Transition Fade */
+.section-fade-mask {
+  mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+/* Performance Optimization */
+.optimize-visibility {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 1000px;
+}
+
+.btn-interactive:active {
+  transform: scale(0.95);
+}

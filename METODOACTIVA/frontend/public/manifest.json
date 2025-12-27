@@ -1,0 +1,56 @@
+{
+    "name": "Método Activa: Arte y Salud",
+    "short_name": "Método Activa",
+    "description": "Recupera tu bienestar con Musicoterapia y Neuroestética. Guía práctica para conectar.",
+    "start_url": "/?source=pwa",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#FFFFFF",
+    "theme_color": "#EC008C",
+    "orientation": "portrait-primary",
+    "categories": [
+        "health",
+        "medical",
+        "books"
+    ],
+    "icons": [
+        {
+            "src": "logo.jpg",
+            "sizes": "192x192",
+            "type": "image/jpeg",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "logo.jpg",
+            "sizes": "512x512",
+            "type": "image/jpeg",
+            "purpose": "any maskable"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Ver en Amazon",
+            "short_name": "Amazon",
+            "description": "Ver oferta en Amazon",
+            "url": "/?redirect=amazon",
+            "icons": [
+                {
+                    "src": "logo.jpg",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "Contactar con Aurora",
+            "short_name": "Soporte",
+            "description": "Hablar con el asistente",
+            "url": "/?chat=open",
+            "icons": [
+                {
+                    "src": "logo.jpg",
+                    "sizes": "192x192"
+                }
+            ]
+        }
+    ]
+}

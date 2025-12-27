@@ -1,1 +1,0 @@
-# METODO-ACTIVA

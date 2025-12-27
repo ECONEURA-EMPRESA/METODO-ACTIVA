@@ -1,0 +1,34 @@
+# --- SECRETS & ARCHIVE (CRITICAL) ---
+_archive/
+.env
+.env.*
+*.key
+*.pem
+*.json
+!package.json
+!tsconfig.json
+!firebase.json
+!manifest.json
+!firestore.indexes.json
+!firestore.indexes.json
+
+# --- DEPENDENCIES ---
+node_modules/
+backend/venv/
+.venv/
+venv/
+
+# --- BUILD ARTIFACTS ---
+dist/
+build/
+__pycache__/
+*.pyc
+.firebase/
+.firebaserc
+
+# --- OS & TOOLS ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log

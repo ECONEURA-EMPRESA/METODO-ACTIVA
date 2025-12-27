@@ -20,10 +20,10 @@ function Run-GCloud {
     if ($proc.ExitCode -ne 0) { throw "Error en gcloud command: $ArgString" }
 }
 
-$PROJECT_ID = 'project-c465bc45-299b-470d-8b6'
+$PROJECT_ID = 'econeura-109cc'
 $REGION = 'us-central1'
 $REPO_NAME = 'cerebro-repo'
-$SERVICE_NAME = 'cerebro-activa-pro'
+$SERVICE_NAME = 'metodo-activa-brain-v2'
 $IMAGE_NAME = "us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$SERVICE_NAME"
 
 # 0. Ubicación (Auto-corrección)
@@ -40,7 +40,7 @@ Run-GCloud "config set project $PROJECT_ID --quiet"
 # 2. Verificar/Crear Repositorio
 Write-Host "2. Verificando Repositorio Docker..."
 try {
-    Run-GCloud "artifacts repositories create $REPO_NAME --repository-format=docker --location=$REGION --description='Repo Cerebro' --quiet"
+    # Run-GCloud "artifacts repositories create $REPO_NAME --repository-format=docker --location=$REGION --description='Repo Cerebro' --quiet"
 }
 catch {
     Write-Host "   (El repo ya existe o hubo un warning, continuamos)" -ForegroundColor Yellow
@@ -58,7 +58,7 @@ Run-GCloud "builds submit backend --tag $IMAGE_NAME --quiet"
 
 # 4. Deploy
 Write-Host "4. Desplegando Servicio Cloud Run..."
-Run-GCloud "run deploy $SERVICE_NAME --image $IMAGE_NAME --region $REGION --allow-unauthenticated --memory 1Gi --set-env-vars=`"GEMINI_API_KEY=AIzaSyDaC9AVDoSXfKbIRuZZKkfNnDNFw2E8T5w`" --quiet"
+Run-GCloud "run deploy $SERVICE_NAME --image $IMAGE_NAME --region $REGION --allow-unauthenticated --memory 1Gi --quiet"
 
 Write-Host ">>> OPERACION COMPLETADA AUTOMATICAMENTE <<<" -ForegroundColor Green
 Write-Host "Busca la 'Service URL' arriba."
