@@ -153,7 +153,7 @@ function App() {
       {/* Cookie Banner (Polished & Trust) - Managed by Hook */}
       {
         showCookieBanner && (
-          <div id="cookie-banner" className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-96 bg-white/95 backdrop-blur-xl border border-gray-100 shadow-[0_8px_30px_rgba(0,0,0,0.12)] rounded-2xl p-6 z-50 animate-slide-up-fade">
+          <div id="cookie-banner" className="fixed bottom-4 left-4 right-4 md:left-4 md:right-auto md:w-96 bg-white/95 backdrop-blur-xl border border-gray-100 shadow-[0_8px_30px_rgba(0,0,0,0.12)] rounded-2xl p-6 z-50 animate-slide-up-fade">
             <div className="flex items-start gap-3">
               <div className="bg-gray-100 p-2 rounded-full"><ShieldCheck size={20} className="text-gray-600" /></div>
               <div>
