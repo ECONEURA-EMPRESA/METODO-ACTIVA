@@ -2,12 +2,15 @@ Write-Host "🚀 Shipping Perfection to Firebase (Google Ecosystem)..." -Foregro
 
 # 1. Build
 Write-Host "🔨 Building React App..." -ForegroundColor Cyan
+Set-Location frontend
 npm run build
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host "❌ Build Failed. Aborting." -ForegroundColor Red
+    Set-Location ..
     exit 1
 }
+Set-Location ..
 
 # 2. Deploy
 Write-Host "☁️ Deploying to Firebase Hosting..." -ForegroundColor Cyan
